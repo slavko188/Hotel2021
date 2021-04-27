@@ -12,9 +12,5 @@ export class AppController {
   getHello(): string {
     return 'Hello World';
   }
-
-  @Get('api/user')
-  getAllUser(): Promise<User[]> {
-      return this.userService.getAll();
-  }
+  
 }

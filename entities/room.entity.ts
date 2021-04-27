@@ -6,7 +6,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { RoomFeature } from "./room-feature.entity";
+import { RoomFeature } from "./room-feature.entity"; 
 import { UserRoom } from "./user-room.entity";
 
 @Index("number_room", ["numberRoom"], { unique: true })
@@ -20,7 +20,7 @@ export class Room {
     name: "number_room",
     unique: true,
     unsigned: true,
-    default: () => "'0'",
+  
   })
   numberRoom: number;
 

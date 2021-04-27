@@ -8,9 +8,10 @@ import { RoomFeature } from 'entities/room-feature.entity';
 import { Room } from 'entities/room.entity';
 import { UserHall } from 'entities/user-hall.entity';
 import { UserRoom } from 'entities/user-room.entity';
-import { User } from '../entities/user.entity';
-import { AppController } from './app.controller';
-import { UserService } from './services/user/user.service';
+import { User } from '../../entities/user.entity';
+import { AppController } from '../app.controller';
+import { UserService } from '../services/user/user.service';
+import { UserController } from './api/user.controller';
 
 
 @Module({
@@ -34,7 +35,7 @@ import { UserService } from './services/user/user.service';
     }),
     TypeOrmModule.forFeature([ User ])
   ],
-  controllers: [AppController],
+  controllers: [AppController, UserController,],
   providers: [ UserService],
 })
 export class AppModule {}
