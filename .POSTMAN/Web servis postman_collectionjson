@@ -1,0 +1,603 @@
+{
+	"info": {
+		"_postman_id": "729820a6-026b-482e-955a-9e2d36061631",
+		"name": "web servis App_Hotel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost: 3000/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": " 3000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost: 3000/api/user/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": " 3000",
+							"path": [
+								"api",
+								"user",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get single user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost: 3000/api/user/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": " 3000",
+									"path": [
+										"api",
+										"user",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "126"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7e-MRkp6Bs0G3oj6Rpc8GoSJXHJ9Bs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Apr 2021 17:19:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": 1,\n    \"username\": \"skavkoR\",\n    \"isActive\": 1,\n    \"forename\": \"slavko\",\n    \"surname\": \"Roganovic\",\n    \"passwordHash\": \"rtygfdse34yhfdgknm89\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a single non-existing user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost: 3000/api/user/320/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": " 3000",
+							"path": [
+								"api",
+								"user",
+								"320",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a single non-existing user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost: 3000/api/user/320/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": " 3000",
+									"path": [
+										"api",
+										"user",
+										"320",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-TohoSz0THfgyH4V7rCdfcfXcq54\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Apr 2021 19:50:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": -1002,\n    \"message\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit an user with(1)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"NovaLozinkaZaOvogaUsera\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost: 3000/api/user/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": " 3000",
+							"path": [
+								"api",
+								"user",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit an user with(1)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"NovaLozinkaZaOvogaUsera\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost: 3000/api/user/1/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": " 3000",
+									"path": [
+										"api",
+										"user",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "234"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ea-zW8JqXsrxVspzFi4O9iXnI2Dgxc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Apr 2021 19:08:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"userId\": 1,\n    \"username\": \"skavkoR\",\n    \"isActive\": 1,\n    \"forename\": \"slavko\",\n    \"surname\": \"Roganovic\",\n    \"passwordHash\": \"9CD4D3F52DD115C4464B690BE843ABBF90DD5CEE289F69D4C8A780B347D96501FAF1E25837C035B38C5AFBE5732AFB91764BB267A736058C8C82FB8D526BFF5B\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit a non-existing user(540)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"4837fjebcm123\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost: 3000/api/user/540",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": " 3000",
+							"path": [
+								"api",
+								"user",
+								"540"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit a non-existing user(540)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"4837fjebcm123\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost: 3000/api/user/540",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": " 3000",
+									"path": [
+										"api",
+										"user",
+										"540"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-TohoSz0THfgyH4V7rCdfcfXcq54\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Apr 2021 19:33:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": -1002,\n    \"message\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Add new user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "conte",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"NikolaR\",\r\n    \"password\": \"Morem plove oblaci\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost: 3000/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": " 3000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add new user-success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "conte",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"NikolaR\",\r\n    \"password\": \"Morem plove oblaci\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost: 3000/api/user/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": " 3000",
+									"path": [
+										"api",
+										"user",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b3-2Wk/hfaa7m/ZBJgTYw8DIRyRkDE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Apr 2021 17:37:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"NikolaR\",\n    \"passwordHash\": \"9A3599D04563B675AE25BC0AA1FCC0D62402CD3DE9BA52AED350C5EC8D630E68D4AC639C09BFB2343596AC07B4100A8FA249654CAC1236C504500DE901892BE4\",\n    \"userId\": 4\n}"
+						}
+					]
+				},
+				{
+					"name": "Add single user with mistake",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"NikolaR\",\r\n    \"password\": \"Morem plove oblaci\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost: 3000/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": " 3000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add single user with mistake",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"NikolaR\",\r\n    \"password\": \"Morem plove oblaci\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost: 3000/api/user/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": " 3000",
+									"path": [
+										"api",
+										"user",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-wukVluMHR8rACTMNduIfXyGD4OU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Apr 2021 18:58:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"statusCode\": -1000,\n    \"message\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
