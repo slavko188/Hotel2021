@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'entities/user.entity';
 import { AddUserDto } from 'src/dtos/user/add.user.dto';
 import { EditUserDto } from 'src/dtos/user/edit.user.dto';
+import { ApiResponse } from 'src/Greska/api.response.class';
 import { Repository } from 'typeorm';
 
 
@@ -21,26 +22,41 @@ export class UserService {
      return this.user.findOne(id);
   }
   
-  add(data: AddUserDto): Promise<User> {
+  add(data: AddUserDto): Promise<User | ApiResponse> {
     const crypto = require('crypto');
     const passwordHash = crypto.createHash('sha512');
     passwordHash.update(data.password);
-    const passwordHashString = passwordHash.digest('hex').topUpperCase();
+    const passwordHashString = passwordHash.digest('hex').toUpperCase();
 
     let newUser: User = new User();
     newUser.username = data.username;
     newUser.passwordHash = passwordHashString;
 
-    return this.user.save(newUser);
+    return new Promise((resolve) => {
+      this.user.save(newUser)
+      .then(data => resolve(data))
+      .catch(error => {
+          const response: ApiResponse = new ApiResponse("error", -1000);
+          resolve(response);
+      });
+      
+    });
+
   }
   
-   async editById(id: number, data: EditUserDto): Promise<User> {
+   async editById(id: number, data: EditUserDto): Promise<User | ApiResponse> {
      let user: User = await this.user.findOne(id);
+
+     if (user === undefined) {
+       return new Promise((resolve) => {
+         resolve(new ApiResponse("error", -1002));
+       });
+     }
      
      const crypto = require('crypto');
      const passwordHash = crypto.createHash('sha512');
      passwordHash.update(data.password);
-     const passwordHashString = passwordHash.digest('hex').topUpperCase();
+     const passwordHashString = passwordHash.digest('hex').toUpperCase();
      
      user.passwordHash = passwordHashString;
      return this.user.save(user);
