@@ -12,7 +12,8 @@ import { User } from '../../entities/user.entity';
 import { AppController } from '../app.controller';
 import { UserService } from '../services/user/user.service';
 import { UserController } from './api/user.controller';
-
+import { RoomController } from './api/room.controller';
+import { RoomService } from 'src/services/Room/room.service';
 
 @Module({
   imports: [
@@ -33,9 +34,10 @@ import { UserController } from './api/user.controller';
         UserRoom,
         User,]
     }),
-    TypeOrmModule.forFeature([ User ])
+    TypeOrmModule.forFeature([User,Room
+    ])
   ],
-  controllers: [AppController, UserController,],
-  providers: [ UserService],
+  controllers: [AppController, UserController, RoomController],
+  providers: [ UserService,RoomService],
 })
 export class AppModule {}
