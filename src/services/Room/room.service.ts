@@ -6,7 +6,7 @@ import { Repository } from "typeorm";
 
 @Injectable()
 export class RoomService {
-  [x: string]: any;
+ 
   constructor(
      @InjectRepository(Room) 
     private  room: Repository<Room>

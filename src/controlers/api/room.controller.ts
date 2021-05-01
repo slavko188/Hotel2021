@@ -15,19 +15,19 @@ export class RoomController {
   }
 
   @Get(':id')
-    getById(@Param('id') roomid:number): Promise<Room | ApiResponseVjezbanje> {
+  getByid(@Param('id') roomid:number): Promise<Room | ApiResponseVjezbanje> {
     return new Promise(async(resolve) => {
-      let room = await this.roomService.getById(roomid);
-
+     let room = await this.roomService.getById(roomid)
+     
       if (room === undefined) {
-        resolve(new ApiResponseVjezbanje('error', -1002));
+        resolve(new ApiResponseVjezbanje('error', -1002))
       }
       resolve(room);
+    }); 
 
-    });
-  
     
-
-
   }
+  
+  
+  
 }
