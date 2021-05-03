@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Room } from "entities/room.entity";
+import { AddRoomDto } from "src/dtos/room/add.room.dto";
 import { ApiResponse } from "src/Greska/api.response.class";
 import { ApiResponseVjezbanje } from "src/Greska/Greske za vjezbanje/api.response.vjezbanje";
 import { Repository } from "typeorm";
@@ -27,7 +28,17 @@ export class RoomService {
         })
     });
   }
-          
+  async createFullRoom(data: AddRoomDto): Promise<Room | ApiResponse> {
+    let newRoom: Room   = new Room();
+    newRoom.numberRoom  = data.numberRoom;
+    newRoom.numberOfBed = data.numberOfBed;
+    newRoom.floor       = data.floor;
+    newRoom.typeOfBed   = data.typeOfBed;
+    
+    let savedRoom = await this.room.save(newRoom);
+    
+    return this.room.save(savedRoom);
+  }         
    
  }
 
