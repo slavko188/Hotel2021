@@ -8,6 +8,9 @@ import { Repository } from "typeorm";
 
 @Injectable()
 export class RoomService {
+  findOne(roomId: number) {
+    throw new Error("Method not implemented.");
+  }
  
   constructor(
     @InjectRepository(Room)
