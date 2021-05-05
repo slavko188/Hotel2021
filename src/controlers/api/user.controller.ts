@@ -3,7 +3,7 @@ import { User } from "entities/user.entity";
 import { resolve } from "node:path";
 import { AddUserDto } from "src/dtos/user/add.user.dto";
 import { EditUserDto } from "src/dtos/user/edit.user.dto";
-import { ApiResponse } from "src/Greska/api.response.class";
+import { ApiResponse } from "src/greska/api.response.class";
 import { UserService } from "src/services/user/user.service";
 
 @Controller('api/user')

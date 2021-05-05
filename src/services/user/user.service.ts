@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'entities/user.entity';
 import { AddUserDto } from 'src/dtos/user/add.user.dto';
 import { EditUserDto } from 'src/dtos/user/edit.user.dto';
-import { ApiResponse } from 'src/Greska/api.response.class';
+import { ApiResponse } from 'src/greska/api.response.class';
 import { Repository } from 'typeorm';
 import * as crypto from 'crypto';
 
