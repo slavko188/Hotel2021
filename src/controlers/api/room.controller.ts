@@ -3,7 +3,7 @@ import { Room } from "entities/room.entity";
 import { AddRoomDto } from "src/dtos/room/add.room.dto";
 import { ApiResponse } from "src/Greska/api.response.class";
 import { ApiResponseVjezbanje } from "src/Greska/Greske za vjezbanje/api.response.vjezbanje";
-import { RoomService } from "src/services/Room/room.service";
+import { RoomService } from "src/services/room/room.service";
 
 
 @Controller('api/room')

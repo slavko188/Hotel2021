@@ -13,7 +13,7 @@ import { AppController } from '../app.controller';
 import { UserService } from '../services/user/user.service';
 import { UserController } from './api/user.controller';
 import { RoomController } from './api/room.controller';
-import { RoomService } from 'src/services/Room/room.service';
+import { RoomService } from 'src/services/room/room.service';
 import { HallController } from './api/hall.controller';
 import { HallService } from 'src/services/hall/hall.service';
 

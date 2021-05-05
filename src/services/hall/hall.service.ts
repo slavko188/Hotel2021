@@ -7,7 +7,7 @@ import { Hall } from "entities/hall.entity";
 @Injectable()
 export class HallService extends TypeOrmCrudService<Hall> {
   constructor(
-    @InjectRepository(Hall) private readonly hall: Repository<Hall>
+        @InjectRepository(Hall) private readonly hall: Repository<Hall>                
   ) {
     super(hall);
   }
