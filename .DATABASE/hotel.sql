@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `feature` (
   `feature_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`feature_id`),
-  UNIQUE KEY `name` (`name`)
+  UNIQUE KEY `uq_feature_name` (`name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `feature`;
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `hall` (
   `surface` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
   `number_place` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`hall_id`),
-  UNIQUE KEY `name` (`name`)
+  UNIQUE KEY `uq_hall_name` (`name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `hall`;
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `room` (
   `number_of_bed` int(15) unsigned NOT NULL DEFAULT '0',
   `floor` int(30) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`room_id`),
-  UNIQUE KEY `number_room` (`number_room`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  UNIQUE KEY `uq_room_number_room` (`number_room`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `room`;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
@@ -81,7 +81,8 @@ INSERT INTO `room` (`room_id`, `number_room`, `type_of_bed`, `number_of_bed`, `f
 	(1, 5, 'drveni', 3, 5),
 	(2, 6, 'metalni', 2, 8),
 	(3, 7, 'drveni', 4, 7),
-	(4, 8, 'plasticni', 2, 8);
+	(4, 8, 'plasticni', 2, 8),
+	(13, 4, 'drveni', 2, 3);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `room_feature`;
@@ -114,14 +115,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password_hash` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `uq_user_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`user_id`, `username`, `is_active`, `forename`, `surname`, `password_hash`) VALUES
-	(1, 'skavkoR', 1, 'slavko', 'Roganovic', 'rtygfdse34yhfdgknm89'),
+	(1, 'skavkoR', 1, 'slavko', 'Roganovic', '9CD4D3F52DD115C4464B690BE843ABBF90DD5CEE289F69D4C8A780B347D96501FAF1E25837C035B38C5AFBE5732AFB91764BB267A736058C8C82FB8D526BFF5B'),
 	(2, 'rajkoRiki', 1, 'rajko', 'rajkovic', '264759dhwjfus3847gjdksm'),
-	(3, 'milanMiki', 1, 'milan', 'milovic', 'shdkaldjdgv4739fhvkd937');
+	(3, 'milanMiki', 1, 'milan', 'milovic', 'shdkaldjdgv4739fhvkd937'),
+	(4, 'NikolaR', 0, '0', '0', '9A3599D04563B675AE25BC0AA1FCC0D62402CD3DE9BA52AED350C5EC8D630E68D4AC639C09BFB2343596AC07B4100A8FA249654CAC1236C504500DE901892BE4');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `user_hall`;
@@ -154,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `user_room` (
   `price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_room_id`),
-  UNIQUE KEY `user_room_user_id` (`user_id`),
-  UNIQUE KEY `user_room_room_id` (`room_id`),
+  UNIQUE KEY `uq_user_room_user_id` (`user_id`) USING BTREE,
+  UNIQUE KEY `uq_user_room_room_id` (`room_id`) USING BTREE,
   CONSTRAINT `fk_user_room_room_id` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_user_room_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
