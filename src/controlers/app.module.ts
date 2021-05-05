@@ -14,6 +14,8 @@ import { UserService } from '../services/user/user.service';
 import { UserController } from './api/user.controller';
 import { RoomController } from './api/room.controller';
 import { RoomService } from 'src/services/Room/room.service';
+import { HallController } from './api/hall.controller';
+import { HallService } from 'src/services/hall/hall.service';
 
 @Module({
   imports: [
@@ -34,10 +36,23 @@ import { RoomService } from 'src/services/Room/room.service';
         UserRoom,
         User,]
     }),
-    TypeOrmModule.forFeature([User,Room
+    TypeOrmModule.forFeature([
+      User,
+      Room,
+      Hall
     ])
+
   ],
-  controllers: [AppController, UserController, RoomController],
-  providers: [ UserService,RoomService],
+  controllers: [
+    AppController,
+    UserController,
+    RoomController,
+    HallController,
+  ],
+  providers: [
+    UserService,
+    RoomService,
+    HallService,
+    ],
 })
 export class AppModule {}

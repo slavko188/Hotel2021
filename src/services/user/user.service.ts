@@ -5,7 +5,7 @@ import { AddUserDto } from 'src/dtos/user/add.user.dto';
 import { EditUserDto } from 'src/dtos/user/edit.user.dto';
 import { ApiResponse } from 'src/Greska/api.response.class';
 import { Repository } from 'typeorm';
-
+import * as crypto from 'crypto';
 
 @Injectable()
 export class UserService {
@@ -23,7 +23,7 @@ export class UserService {
   }
   
   add(data: AddUserDto): Promise<User | ApiResponse> {
-    const crypto = require('crypto');
+ 
     const passwordHash = crypto.createHash('sha512');
     passwordHash.update(data.password);
     const passwordHashString = passwordHash.digest('hex').toUpperCase();
@@ -53,7 +53,7 @@ export class UserService {
        });
      }
      
-     const crypto = require('crypto');
+ 
      const passwordHash = crypto.createHash('sha512');
      passwordHash.update(data.password);
      const passwordHashString = passwordHash.digest('hex').toUpperCase();
