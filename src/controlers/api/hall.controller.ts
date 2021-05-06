@@ -1,6 +1,6 @@
 import { Controller } from "@nestjs/common";
 import { Crud } from "@nestjsx/crud";
-import { Hall } from "entities/hall.entity";
+import { Hall } from "src/entities/hall.entity";
 import { HallService } from "src/services/hall/hall.service";
 
 @Controller('api/hall')

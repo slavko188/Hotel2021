@@ -54,5 +54,5 @@ import { HallService } from 'src/services/hall/hall.service';
     RoomService,
     HallService,
     ],
-})
+}) 
 export class AppModule {}
