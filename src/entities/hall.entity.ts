@@ -1,3 +1,4 @@
+import { Feature } from "src/entities/feature.entity";
 import {
   Column,
   Entity,
@@ -44,6 +45,8 @@ export class Hall {
 
   @OneToMany(() => HallFeature, (hallFeature) => hallFeature.hall)
   hallFeatures: HallFeature[];
+
+  features: Feature[];
 
   @OneToOne(() => UserHall, (userHall) => userHall.hall)
   userHall: UserHall;

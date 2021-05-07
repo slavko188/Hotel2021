@@ -36,12 +36,13 @@ CREATE TABLE IF NOT EXISTS `hall` (
   `number_place` smallint(5) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`hall_id`),
   UNIQUE KEY `uq_hall_name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `hall`;
 /*!40000 ALTER TABLE `hall` DISABLE KEYS */;
 INSERT INTO `hall` (`hall_id`, `name`, `surface`, `number_place`) VALUES
-	(1, 'kongresna sala', 3102.00, 500);
+	(1, 'kongresna sala', 3102.00, 500),
+	(2, 'sportska sala', 1000.00, 150);
 /*!40000 ALTER TABLE `hall` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `hall_feature`;
@@ -54,30 +55,31 @@ CREATE TABLE IF NOT EXISTS `hall_feature` (
   KEY `fk_hall_feature_feature_id` (`feature_id`),
   CONSTRAINT `fk_hall_feature_feature_id` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_hall_feature_hall_id` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`hall_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `hall_feature`;
 /*!40000 ALTER TABLE `hall_feature` DISABLE KEYS */;
 INSERT INTO `hall_feature` (`hall_feature`, `hall_id`, `feature_id`) VALUES
 	(1, 1, 5),
 	(2, 1, 6),
-	(3, 1, 7);
+	(31, 2, 3),
+	(3, 2, 6);
 /*!40000 ALTER TABLE `hall_feature` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `room`;
 CREATE TABLE IF NOT EXISTS `room` (
   `room_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `number_room` int(10) unsigned NOT NULL DEFAULT '0',
+  `room_number` int(10) unsigned NOT NULL DEFAULT '0',
   `type_of_bed` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `number_of_bed` int(15) unsigned NOT NULL DEFAULT '0',
+  `number_of_beds` int(15) unsigned NOT NULL DEFAULT '0',
   `floor` int(30) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`room_id`),
-  UNIQUE KEY `uq_room_number_room` (`number_room`) USING BTREE
+  UNIQUE KEY `uq_room_number_room` (`room_number`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `room`;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` (`room_id`, `number_room`, `type_of_bed`, `number_of_bed`, `floor`) VALUES
+INSERT INTO `room` (`room_id`, `room_number`, `type_of_bed`, `number_of_beds`, `floor`) VALUES
 	(1, 5, 'drveni', 3, 5),
 	(2, 6, 'metalni', 2, 8),
 	(3, 7, 'drveni', 4, 7),

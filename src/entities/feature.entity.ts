@@ -1,3 +1,4 @@
+import { HallService } from "src/services/hall/hall.service";
 import {
   Column,
   Entity,
@@ -6,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { HallFeature } from "./hall-feature.entity";
+import { Hall } from "./hall.entity";
 import { RoomFeature } from "./room-feature.entity";
 
 @Index("name", ["name"], { unique: true })
@@ -25,6 +27,7 @@ export class Feature {
 
   @OneToMany(() => HallFeature, (hallFeature) => hallFeature.feature)
   hallFeatures: HallFeature[];
+  hall: Hall[];
 
   @OneToMany(() => RoomFeature, (roomFeature) => roomFeature.feature)
   roomFeatures: RoomFeature[];

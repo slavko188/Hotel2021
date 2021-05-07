@@ -10,7 +10,7 @@ import { HallService } from "src/services/hall/hall.service";
   },
   params: {
     id: {
-      field: 'id',
+      field: 'hallId',
       type: 'number',
       primary: true
       }

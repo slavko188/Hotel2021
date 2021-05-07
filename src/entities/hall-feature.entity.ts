@@ -16,12 +16,12 @@ import { Hall } from "./hall.entity";
 @Entity("hall_feature")
 export class HallFeature {
   @PrimaryGeneratedColumn({ type: "int", name: "hall_feature", unsigned: true })
-  hallFeature: number;
+  hallFeatureId: number;
 
-  @Column({ name: "hall_id", type:"int", unsigned: true, default: () => "'0'" })
+  @Column({ name: "hall_id", type:"int", unsigned: true })
   hallId: number;
 
-  @Column({ name: "feature_id",type:"int", unsigned: true, default: () => "'0'" })
+  @Column({ name: "feature_id",type:"int", unsigned: true })
   featureId: number;
 
   @ManyToOne(() => Feature, (feature) => feature.hallFeatures, {

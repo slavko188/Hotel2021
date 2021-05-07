@@ -16,6 +16,10 @@ import { RoomController } from './api/room.controller';
 import { RoomService } from 'src/services/room/room.service';
 import { HallController } from './api/hall.controller';
 import { HallService } from 'src/services/hall/hall.service';
+import { FeatureController } from './api/feature.controller';
+import { FeatureService } from 'src/services/feature/feature.service';
+import { HallFeatureService } from 'src/services/hallFeature/hallFeature.service';
+import { HallFeatureController } from './hallFeature/hallFeature.controller';
 
 @Module({
   imports: [
@@ -39,7 +43,9 @@ import { HallService } from 'src/services/hall/hall.service';
     TypeOrmModule.forFeature([
       User,
       Room,
-      Hall
+      Hall,
+      Feature,
+      HallFeature,
     ])
 
   ],
@@ -48,11 +54,15 @@ import { HallService } from 'src/services/hall/hall.service';
     UserController,
     RoomController,
     HallController,
+    FeatureController,
+    HallFeatureController,
   ],
   providers: [
     UserService,
     RoomService,
     HallService,
+    FeatureService,
+    HallFeatureService,
     ],
 }) 
 export class AppModule {}

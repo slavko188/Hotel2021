@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Room } from "entities/room.entity";
+import { Room } from "src/entities/room.entity";
 import { AddRoomDto } from "src/dtos/room/add.room.dto";
 import { ApiResponse } from "src/greska/api.response.class";
 import { ApiResponseVjezbanje } from "src/greska/greska za vjezbanje/api.response.vjezbanje";
