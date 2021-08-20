@@ -18,8 +18,8 @@ import { HallController } from './api/hall.controller';
 import { HallService } from 'src/services/hall/hall.service';
 import { FeatureController } from './api/feature.controller';
 import { FeatureService } from 'src/services/feature/feature.service';
-import { HallFeatureService } from 'src/services/hallFeature/hallFeature.service';
-import { HallFeatureController } from './hallFeature/hallFeature.controller';
+import { HallFeatureService } from 'src/services/hall/hallFeature.service';
+import { HallFeatureController } from './api/hallFeature.controller';
 
 @Module({
   imports: [
