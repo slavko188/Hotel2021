@@ -20,6 +20,8 @@ import { FeatureController } from './api/feature.controller';
 import { FeatureService } from 'src/services/feature/feature.service';
 import { HallFeatureService } from 'src/services/hall/hallFeature.service';
 import { HallFeatureController } from './api/hallFeature.controller';
+import { Photo } from 'src/entities/photo.entity';
+import { PhotoService } from 'src/services/photo/photo.service';
 
 @Module({
   imports: [
@@ -38,7 +40,8 @@ import { HallFeatureController } from './api/hallFeature.controller';
         Room,
         UserHall,
         UserRoom,
-        User,]
+      User,
+      Photo,]
     }),
     TypeOrmModule.forFeature([
       User,
@@ -46,6 +49,7 @@ import { HallFeatureController } from './api/hallFeature.controller';
       Hall,
       Feature,
       HallFeature,
+      Photo,
     ])
 
   ],
@@ -63,6 +67,7 @@ import { HallFeatureController } from './api/hallFeature.controller';
     HallService,
     FeatureService,
     HallFeatureService,
+    PhotoService,
     ],
 }) 
 export class AppModule {}
