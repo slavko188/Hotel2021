@@ -16,8 +16,7 @@ export class Photo {
   @Column({ type: "int", name: "hall_id", unsigned: true })
   hallId: number;
 
-  @Column({ type: "int", name: "room_id", unsigned: true })
-  roomId: number;
+
 
   @Column({
     type: "varchar",
@@ -27,8 +26,7 @@ export class Photo {
 
   })
   imagePath: string;
-
-  @ManyToOne(
+  /*  @ManyToOne(
     () => Hall,
     hall => hall,
     { onDelete: "NO ACTION", onUpdate: "CASCADE" }
@@ -36,9 +34,12 @@ export class Photo {
   )
   @ManyToOne(
     () => Room,
-    room => room,
+    room => room.photos
     { onDelete: "NO ACTION", onUpdate: "CASCADE" }
   )
+        */
+
+  
   @JoinColumn([{ name: "hall_id", referencedColumnName: "hallId" }])
   hall: Hall;
 
