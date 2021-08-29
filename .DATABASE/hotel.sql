@@ -47,10 +47,10 @@ INSERT INTO `hall` (`hall_id`, `name`, `surface`, `number_place`) VALUES
 
 DROP TABLE IF EXISTS `hall_feature`;
 CREATE TABLE IF NOT EXISTS `hall_feature` (
-  `hall_feature` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `hall_feature_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `hall_id` int(10) unsigned NOT NULL DEFAULT '0',
   `feature_id` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`hall_feature`),
+  PRIMARY KEY (`hall_feature_id`) USING BTREE,
   UNIQUE KEY `uq_hall_feature_hall_id_feature_id` (`hall_id`,`feature_id`),
   KEY `fk_hall_feature_feature_id` (`feature_id`),
   CONSTRAINT `fk_hall_feature_feature_id` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`) ON UPDATE CASCADE,
@@ -59,12 +59,41 @@ CREATE TABLE IF NOT EXISTS `hall_feature` (
 
 DELETE FROM `hall_feature`;
 /*!40000 ALTER TABLE `hall_feature` DISABLE KEYS */;
-INSERT INTO `hall_feature` (`hall_feature`, `hall_id`, `feature_id`) VALUES
+INSERT INTO `hall_feature` (`hall_feature_id`, `hall_id`, `feature_id`) VALUES
 	(1, 1, 5),
 	(2, 1, 6),
 	(31, 2, 3),
 	(3, 2, 6);
 /*!40000 ALTER TABLE `hall_feature` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `hall_photo`;
+CREATE TABLE IF NOT EXISTS `hall_photo` (
+  `hall_photo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `hall_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `photo_id` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`hall_photo_id`),
+  UNIQUE KEY `uq_hall_photo_hall_id` (`hall_id`),
+  UNIQUE KEY `uq_hall_photo_photo_id` (`photo_id`),
+  CONSTRAINT `fk_hall_photo_hall_id` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`hall_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_hall_photo_photo_id` FOREIGN KEY (`photo_id`) REFERENCES `photo` (`photo_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DELETE FROM `hall_photo`;
+/*!40000 ALTER TABLE `hall_photo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hall_photo` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `photo`;
+CREATE TABLE IF NOT EXISTS `photo` (
+  `photo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `image_path` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`photo_id`),
+  UNIQUE KEY `uq_photo_image_path` (`image_path`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DELETE FROM `photo`;
+/*!40000 ALTER TABLE `photo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `photo` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `room`;
 CREATE TABLE IF NOT EXISTS `room` (
@@ -74,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `number_of_beds` int(15) unsigned NOT NULL DEFAULT '0',
   `floor` int(30) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`room_id`),
-  UNIQUE KEY `uq_room_number_room` (`room_number`) USING BTREE
+  UNIQUE KEY `uq_room_room_number` (`room_number`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `room`;
@@ -97,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `room_feature` (
   KEY `feature_id` (`feature_id`),
   CONSTRAINT `fk_room_feature_feature_id` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_room_feature_room_id` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `room_feature`;
 /*!40000 ALTER TABLE `room_feature` DISABLE KEYS */;
@@ -106,6 +135,22 @@ INSERT INTO `room_feature` (`room_feature_id`, `room_id`, `feature_id`) VALUES
 	(3, 2, 3),
 	(2, 4, 4);
 /*!40000 ALTER TABLE `room_feature` ENABLE KEYS */;
+
+DROP TABLE IF EXISTS `room_photo`;
+CREATE TABLE IF NOT EXISTS `room_photo` (
+  `room_photo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `room_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `photo_id` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`room_photo_id`),
+  UNIQUE KEY `uq_room_photo_room_id` (`room_id`),
+  UNIQUE KEY `uq_room_photo_photo_id` (`photo_id`),
+  CONSTRAINT `fk_room_photo_photo_id` FOREIGN KEY (`photo_id`) REFERENCES `photo` (`photo_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_room_photo_room_id` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DELETE FROM `room_photo`;
+/*!40000 ALTER TABLE `room_photo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `room_photo` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
@@ -117,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password_hash` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `uq_user_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
