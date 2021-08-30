@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Get, Param,  Put } from "@nestjs/common";
 import { Room } from "src/entities/room.entity";
 import { AddRoomDto } from "src/dtos/room/add.room.dto";
 import { ApiResponse } from "src/greska/api.response.class";
@@ -37,8 +37,6 @@ export class RoomController {
 
      }
    
-  
- 
-                               
+                                 
 }
 

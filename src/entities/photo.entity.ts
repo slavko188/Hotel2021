@@ -13,10 +13,6 @@ export class Photo {
   @PrimaryGeneratedColumn({ name: 'photo_id', type: 'int', unsigned: true })
   photoId: number;
 
-  @Column({ type: "int", name: "hall_id", unsigned: true })
-  hallId: number;
-
-
 
   @Column({
     type: "varchar",
