@@ -24,7 +24,7 @@ import { Photo } from 'src/entities/photo.entity';
 import { PhotoService } from 'src/services/photo/photo.service';
 
 @Module({
-  imports: [
+  imports: [ 
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: DatabaseConfiguration.hostname,
