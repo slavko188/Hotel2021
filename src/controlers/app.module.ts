@@ -22,9 +22,11 @@ import { HallFeatureService } from 'src/services/hall/hallFeature.service';
 import { HallFeatureController } from './api/hallFeature.controller';
 import { Photo } from 'src/entities/photo.entity';
 import { PhotoService } from 'src/services/photo/photo.service';
+import { PhotoRoom } from 'src/entities/photo-room.entity';
+import { PhotoHall } from 'src/entities/photo-hall.entity';
 
 @Module({
-  imports: [ 
+  imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: DatabaseConfiguration.hostname,
@@ -41,7 +43,9 @@ import { PhotoService } from 'src/services/photo/photo.service';
         UserHall,
         UserRoom,
       User,
-      Photo,]
+      Photo,
+      PhotoHall,
+      PhotoRoom,]
     }),
     TypeOrmModule.forFeature([
       User,
@@ -50,6 +54,10 @@ import { PhotoService } from 'src/services/photo/photo.service';
       Feature,
       HallFeature,
       Photo,
+      PhotoHall,
+      PhotoRoom,
+
+      
     ])
 
   ],

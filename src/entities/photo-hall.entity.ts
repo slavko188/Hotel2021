@@ -3,7 +3,7 @@ import { Hall } from "./hall.entity";
 import { Photo } from "./photo.entity";
 
 @Entity("photo_hall")
-export class HallFeature {
+export class PhotoHall {
   @PrimaryGeneratedColumn({ type: "int", name: "hall_photo", unsigned: true })
   hallPhotoId: number;
 
