@@ -4,14 +4,12 @@ import { Photo } from "./photo.entity";
 
 @Entity("photo_hall")
 export class PhotoHall {
-  @PrimaryGeneratedColumn({ type: "int", name: "hall_photo", unsigned: true })
-  hallPhotoId: number;
+  @PrimaryGeneratedColumn({ type: "int", name: "photo_hall", unsigned: true })
+  photoHallId: number;
 
   @Column({ name: "hall_id", type:"int", unsigned: true })
   hallId: number;
 
-  @Column({ name: "photo_id",type:"int", unsigned: true })
-  photoId: number;
 
   @OneToMany(() => Hall, (hall) => hall.hallId, {
     onDelete: "RESTRICT",
@@ -20,10 +18,4 @@ export class PhotoHall {
   @JoinColumn([{ name: "hall_id", referencedColumnName: "hallId" }])
   hall: Hall;
 
-  @OneToMany(() => Photo, (photo) => photo.hall, {
-    onDelete: "RESTRICT",
-    onUpdate: "CASCADE",
-  })
-  @JoinColumn([{ name: "photo_id", referencedColumnName: "photoId" }])
-  photo: Photo;
 }
