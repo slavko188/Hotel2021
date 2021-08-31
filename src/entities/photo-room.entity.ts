@@ -14,7 +14,7 @@ export class PhotoRoom {
   @Column({ name: "room_id",type:"int", unsigned: true })
   roomId: number;
 
-  @ManyToOne(() => Photo, (photo) => photo.photoId, {
+  @ManyToOne(() => Photo, (photo) => photo.room, {
     onDelete: "RESTRICT",
     onUpdate: "CASCADE",
   })

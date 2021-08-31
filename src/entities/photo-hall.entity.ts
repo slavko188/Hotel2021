@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Hall } from "./hall.entity";
 import { Photo } from "./photo.entity";
 
@@ -13,14 +13,14 @@ export class PhotoHall {
   @Column({ name: "photo_id",type:"int", unsigned: true })
   photoId: number;
 
-  @ManyToOne(() => Hall, (hall) => hall.hallId, {
+  @OneToMany(() => Hall, (hall) => hall.hallId, {
     onDelete: "RESTRICT",
     onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "hall_id", referencedColumnName: "hallId" }])
   hall: Hall;
 
-  @ManyToOne(() => Photo, (photo) => photo.photoId, {
+  @OneToMany(() => Photo, (photo) => photo.hall, {
     onDelete: "RESTRICT",
     onUpdate: "CASCADE",
   })
