@@ -24,6 +24,8 @@ import { Photo } from 'src/entities/photo.entity';
 import { PhotoService } from 'src/services/photo/photo.service';
 import { PhotoRoom } from 'src/entities/photo-room.entity';
 import { PhotoHall } from 'src/entities/photo-hall.entity';
+import { PhotoHallService } from 'src/services/photo/photoHall.service';
+import { PhotoRoomService } from 'src/services/photo/photoRoom.service';
 
 @Module({
   imports: [
@@ -76,6 +78,8 @@ import { PhotoHall } from 'src/entities/photo-hall.entity';
     FeatureService,
     HallFeatureService,
     PhotoService,
+    PhotoRoomService,
+    PhotoHallService,
     ],
 }) 
 export class AppModule {}
