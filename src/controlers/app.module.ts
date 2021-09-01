@@ -26,6 +26,7 @@ import { PhotoRoom } from 'src/entities/photo-room.entity';
 import { PhotoHall } from 'src/entities/photo-hall.entity';
 import { PhotoHallService } from 'src/services/photo/photoHall.service';
 import { PhotoRoomService } from 'src/services/photo/photoRoom.service';
+import { PhotoController } from './api/photo.controller';
 
 @Module({
   imports: [
@@ -70,6 +71,7 @@ import { PhotoRoomService } from 'src/services/photo/photoRoom.service';
     HallController,
     FeatureController,
     HallFeatureController,
+    PhotoController,
   ],
   providers: [
     UserService,
