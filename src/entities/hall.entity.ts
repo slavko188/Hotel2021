@@ -8,6 +8,8 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { HallFeature } from "./hall-feature.entity";
+import { PhotoHall } from "./photo-hall.entity";
+import { Photo } from "./photo.entity";
 import { UserHall } from "./user-hall.entity";
 
 @Index("name", ["name"], { unique: true })
@@ -50,4 +52,9 @@ export class Hall {
 
   @OneToOne(() => UserHall, (userHall) => userHall.hall)
   userHall: UserHall;
+
+  @OneToMany(() => PhotoHall, (photoHall) => photoHall.hall)
+  photoHall: PhotoHall;
+
+  photo: Photo[];
 }

@@ -2,11 +2,11 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  JoinColumn,
-  ManyToOne
+  OneToMany
 } from "typeorm";
-import { Hall } from "./hall.entity";
-import { Room } from "./room.entity";
+import { PhotoHall } from "./photo-hall.entity";
+import { PhotoRoom } from "./photo-room.entity";
+
 
 @Entity("photo")
 export class Photo {
@@ -22,24 +22,12 @@ export class Photo {
 
   })
   imagePath: string;
-  /*  @ManyToOne(
-    () => Hall,
-    hall => hall,
-    { onDelete: "NO ACTION", onUpdate: "CASCADE" }
-    
-  )
-  @ManyToOne(
-    () => Room,
-    room => room.photos
-    { onDelete: "NO ACTION", onUpdate: "CASCADE" }
-  )
-        */
+ 
+  @OneToMany(() => PhotoHall, (photoHall) => photoHall.photo)
+  photoHall: PhotoHall;
 
-  
-  @JoinColumn([{ name: "hall_id", referencedColumnName: "hallId" }])
-  hall: Hall;
+  @OneToMany(() => PhotoRoom, (photoRoom) => photoRoom.photo)
+  photoRoom: PhotoRoom;
 
-  @JoinColumn([{ name: "room_id", referencedColumnName: "roomId" }])
-  room: Room;
 
 }

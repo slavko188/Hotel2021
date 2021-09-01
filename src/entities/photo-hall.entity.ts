@@ -13,16 +13,16 @@ export class PhotoHall {
   @Column({ name: "photo_id", type: "int", unsigned: true })
   photoId: number;
 
-  @ManyToOne(() => Photo, (photo) => photo.photoId, {
+  @ManyToOne(() => Photo, (photo) => photo.photoHall, {
     onDelete: "RESTRICT",
     onUpdate: "CASCADE",
 })
   
-@JoinColumn([{ name: "photo_id", referencedColumnName: "photoId" }])
-photo: Photo;
+  @JoinColumn([{ name: "photo_id", referencedColumnName: "photoId" }])
+  photo: Photo[];
 
 
-  @OneToMany(() => Hall, (hall) => hall.hallId, {
+  @ManyToOne(() => Hall, (hall) => hall.photoHall, {
     onDelete: "RESTRICT",
     onUpdate: "CASCADE",
   })

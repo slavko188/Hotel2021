@@ -6,6 +6,8 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { PhotoRoom } from "./photo-room.entity";
+import { Photo } from "./photo.entity";
 import { RoomFeature } from "./room-feature.entity"; 
 import { UserRoom } from "./user-room.entity";
 
@@ -43,4 +45,9 @@ export class Room {
 
   @OneToOne(() => UserRoom, (userRoom) => userRoom.room)
   userRoom: UserRoom;
+
+  @OneToMany(() => PhotoRoom, (photoRoom) => photoRoom.room)
+  photoRoom: PhotoRoom;
+
+  photo: Photo[];
 }
