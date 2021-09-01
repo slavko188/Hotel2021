@@ -18,8 +18,8 @@ export class PhotoRoom {
     onUpdate: "CASCADE",
 })
   
-@JoinColumn([{ name: "photo_id", referencedColumnName: "photoId" }])
-photo: Photo[];
+  @JoinColumn([{ name: "photo_id", referencedColumnName: "photoId" }])
+   photo: Photo[];
 
 
   @ManyToOne(() => Room, (room) => room.photoRoom, {
