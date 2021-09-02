@@ -1,4 +1,4 @@
-import { Controller, Param, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Controller, Param, Post, Req, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Crud } from "@nestjsx/crud";
 import { Photo } from "src/entities/photo.entity";
@@ -64,16 +64,18 @@ export class PhotoController {
       fileFilter: (req, file, callback) => {
          //provjera: Check ekstenzije: JPG,PNG
 
-        if (!file.originalname.match(/\.(jpg|png)$/)) {
-          
-          callback(new Error('losa ekstenzija!'), false);
+        if (!file.originalname.toLowerCase().match(/\.(jpg|png)$/)) {
+          req.fileFilterError = "Bad file extension";
+          callback(null, false);
           return;
         }
 
           // Provjera: check tipa sadrzaja: image/jpeg,image/png/(mimetype)
+        
         if (!(file.mimetype.includes('jpeg') || file.mimetype.includes('png'))) {
-          callback(new Error('Bad file content!'), false);
-          return;
+          req.fileFilterError = "Bad file content";
+          callback(null, false); // ova greska ce da se prikaze u konsoli(ali to nije pravo mjesto gde treba da se prikaze ggreska)
+          return;       // ovo je za proces dibagovanja da vidimo da li proces prolazi.
         }
         
         callback(null, true);
@@ -81,13 +83,27 @@ export class PhotoController {
 
       limits: {
         files: 1,
-        fieldSize: StorageConfig.photoMaxFileSize,
+        fileSize: StorageConfig.photoMaxFileSize,
 
       },
       
     })
   )
-    async uploadPhoto(@Param('id') photoId: number, @UploadedFile() photo): Promise<ApiResponse | Photo> {
+  async uploadPhoto(
+    @Param('id') photoId: number,
+    @UploadedFile() photo,
+    @Req() req): Promise<ApiResponse | Photo> {
+    if (req.fileFilterError) {
+      return new ApiResponse('error', -4002, req.fileFilterError);
+    }
+
+    if (!photo) {
+      return new ApiResponse('error', -4002, 'File not uploaded!');
+    }
+    
+    //TODO: Real Mime Type check
+    //TODO:  Save a resized file
+
     const newPhoto: Photo = new Photo();
     newPhoto.photoId = photoId;
     newPhoto.imagePath = photo.filename;
