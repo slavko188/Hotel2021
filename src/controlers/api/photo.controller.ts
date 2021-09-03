@@ -6,6 +6,9 @@ import { PhotoService } from "src/services/photo/photo.service";
 import { diskStorage } from "multer";
 import { StorageConfig } from "config/storage.config";
 import { ApiResponse } from "src/greska/api.response.class";
+import * as fileType from 'file-type';
+import * as fs from 'fs';
+import * as sharp from 'sharp';
 
 
 @Controller('api/photo')
@@ -100,9 +103,28 @@ export class PhotoController {
     if (!photo) {
       return new ApiResponse('error', -4002, 'File not uploaded!');
     }
+
     
-    //TODO: Real Mime Type check
-    //TODO:  Save a resized file
+         //TODO: Real Mime Type check(obrada faila)
+    const fileTypeResult = await fileType.fromFile(photo.path);
+    if (!fileTypeResult) {
+      //ako se fail ne pronadje treba ga obrisati da ne zauzima resurse.kasnije ce se napisati logika.
+      fs.unlinkSync(photo.path);
+      return new ApiResponse('error', -4002, 'Can  not detected file type!');
+    }
+    
+    const realMimeType = fileTypeResult.mime;
+
+    if (!(realMimeType.includes('jpeg') || realMimeType.includes('png'))) {
+      // obrisati fail ako mu exstenzije nijesu jpeg ili png
+      fs.unlinkSync(photo.path); // hocemo Sync jer treba prvo fail da se obrise pa tek da posalje apiresponse,da nebi dosli do prekida.
+      
+      return new ApiResponse('error', -4002, 'bad file content type!');
+    }
+    
+    await this.createThumb(photo);
+    await this.createSmallImage(photo);
+  
 
     const newPhoto: Photo = new Photo();
     newPhoto.photoId = photoId;
@@ -115,4 +137,38 @@ export class PhotoController {
     return savedPhoto;
 
   }
+
+  async createThumb(photo) {
+    const originalFilePath = photo.path;
+    const fileName = photo.filename;
+
+    const destinationFilePath = StorageConfig.photosDestination + "thumb/" + fileName;
+     
+    await sharp(originalFilePath)
+      .resize({
+        fit: 'contain',
+        with: StorageConfig.photoThumbSize.width,
+        height: StorageConfig.photoThumbSize.height
+      })
+    
+      .toFile(destinationFilePath);
+  }
+
+  async createSmallImage(photo) {
+    const originalFilePath = photo.path;
+    const fileName = photo.filename;
+
+    const destinationFilePath = StorageConfig.photosDestination + "small/" + fileName;
+     
+    await sharp(originalFilePath)
+      .resize({
+        fit: 'contain',
+        with: StorageConfig.photoSmallSize.width,
+        height: StorageConfig.photoSmallSize.height
+      })
+    
+      .toFile(destinationFilePath);
+  }
+
+
 }
