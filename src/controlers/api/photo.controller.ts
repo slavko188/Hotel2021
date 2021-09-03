@@ -121,10 +121,9 @@ export class PhotoController {
       
       return new ApiResponse('error', -4002, 'bad file content type!');
     }
-    
+
     await this.createThumb(photo);
     await this.createSmallImage(photo);
-  
 
     const newPhoto: Photo = new Photo();
     newPhoto.photoId = photoId;
@@ -138,6 +137,8 @@ export class PhotoController {
 
   }
 
+      
+ 
   async createThumb(photo) {
     const originalFilePath = photo.path;
     const fileName = photo.filename;
@@ -146,11 +147,13 @@ export class PhotoController {
      
     await sharp(originalFilePath)
       .resize({
-        fit: 'contain',
-        with: StorageConfig.photoThumbSize.width,
-        height: StorageConfig.photoThumbSize.height
-      })
-    
+        fit: 'cover',
+        width: StorageConfig.photoThumbSize.width,
+        height: StorageConfig.photoThumbSize.height,
+        background: {
+          r: 255, g: 255, b: 255, alpha: 0.0 
+        }
+      })   
       .toFile(destinationFilePath);
   }
 
@@ -162,11 +165,13 @@ export class PhotoController {
      
     await sharp(originalFilePath)
       .resize({
-        fit: 'contain',
-        with: StorageConfig.photoSmallSize.width,
-        height: StorageConfig.photoSmallSize.height
-      })
-    
+        fit: 'cover',
+        width: StorageConfig.photoSmallSize.width,
+        height: StorageConfig.photoSmallSize.height,
+        background: {
+          r: 255, g: 255, b: 255, alpha: 0.0
+        }
+      })   
       .toFile(destinationFilePath);
   }
 
