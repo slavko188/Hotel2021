@@ -1,4 +1,3 @@
-import { Feature } from "src/entities/feature.entity";
 import {
   Column,
   Entity,
@@ -9,7 +8,6 @@ import {
 } from "typeorm";
 import { HallFeature } from "./hall-feature.entity";
 import { PhotoHall } from "./photo-hall.entity";
-import { Photo } from "./photo.entity";
 import { UserHall } from "./user-hall.entity";
 
 @Index("name", ["name"], { unique: true })
@@ -47,8 +45,8 @@ export class Hall {
 
   @OneToMany(() => HallFeature, (hallFeature) => hallFeature.hall)
   hallFeatures: HallFeature[];
-
-  features: Feature[];
+  
+ 
 
   @OneToOne(() => UserHall, (userHall) => userHall.hall)
   userHall: UserHall;
@@ -56,5 +54,5 @@ export class Hall {
   @OneToMany(() => PhotoHall, (photoHall) => photoHall.hall)
   photoHall: PhotoHall;
 
-  photo: Photo[];
+  
 }

@@ -24,10 +24,10 @@ export class Photo {
   imagePath: string;
  
   @OneToMany(() => PhotoHall, (photoHall) => photoHall.photo)
-  photoHall: PhotoHall;
+  photoHall: PhotoHall[];
 
   @OneToMany(() => PhotoRoom, (photoRoom) => photoRoom.photo)
-  photoRoom: PhotoRoom;
+  photoRoom: PhotoRoom[];
 
 
 }
