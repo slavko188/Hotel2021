@@ -13,5 +13,7 @@ export class FeatureService extends TypeOrmCrudService<Feature> {
     
   ) {
     super(feature);
-   }
+  }
+  
+ 
 }
