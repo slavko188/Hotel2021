@@ -161,7 +161,7 @@ export class PhotoController {
     }
     
   //http://localhost:3000/api/photo/deletePhoto/4/
-  @Delete(':photo/deletePhoto/:photoId')
+  @Delete(':deletePhoto/:photoId')
   public async deletePhoto(
     @Param('photoId') photoId: number,
   ) {
