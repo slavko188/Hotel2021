@@ -161,7 +161,7 @@ export class PhotoController {
     }
     
   //http://localhost:3000/api/photo/deletePhoto/4/
-  @Delete(':deletePhoto/:photoId')
+  @Delete(':deletephoto/:photoId')
   public async deletePhoto(
     @Param('photoId') photoId: number,
   ) {
@@ -173,7 +173,7 @@ export class PhotoController {
       return new ApiResponse('error', -4004, 'photo not found!');
     }
 
-    try {
+       try {
 
       fs.unlinkSync(StorageConfig.photo.destination + photo.imagePath);
       fs.unlinkSync(StorageConfig.photo.destination +
@@ -184,7 +184,7 @@ export class PhotoController {
         StorageConfig.photo.resize.small.directory +
         photo.imagePath);
 
-    } catch (e) { }
+      } catch (e) { }
     
      const deleteResult = await this.photoService.deleteById(photoId);
       
