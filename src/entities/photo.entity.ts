@@ -6,6 +6,7 @@ import {
 } from "typeorm";
 import { PhotoHall } from "./photo-hall.entity";
 import { PhotoRoom } from "./photo-room.entity";
+import * as Validator from 'class-validator';
 
 
 @Entity("photo")
@@ -21,6 +22,9 @@ export class Photo {
     length: 128
 
   })
+  @Validator.IsNotEmpty()
+  @Validator.IsString()
+  @Validator.Length( 1, 128)
   imagePath: string;
  
   @OneToMany(() => PhotoHall, (photoHall) => photoHall.photo)
