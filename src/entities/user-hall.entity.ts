@@ -9,6 +9,7 @@ import {
 import { Hall } from "./hall.entity";
 import { User } from "./user.entity";
 
+
 @Index("uq_user_hall_user_id", ["userId"], { unique: true })
 @Index("uq_user_hall_hall_id", ["hallId"], { unique: true })
 @Entity("user_hall")

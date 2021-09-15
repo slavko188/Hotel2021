@@ -9,6 +9,7 @@ import {
 import { HallFeature } from "./hall-feature.entity";
 import { PhotoHall } from "./photo-hall.entity";
 import { UserHall } from "./user-hall.entity";
+import * as Validator from 'class-validator';
 
 @Index("name", ["name"], { unique: true })
 @Entity("hall")
@@ -23,6 +24,9 @@ export class Hall {
     length: 128,
     
   })
+  @Validator.IsNotEmpty()
+  @Validator.IsString()
+    @Validator.Length(0, 123)
   name: string;
 
   @Column({
@@ -33,13 +37,27 @@ export class Hall {
     scale: 2,
     
   })
-  surface: number;
+  @Validator.IsNotEmpty()
+  @Validator.IsPositive()
+  @Validator.IsNumber({
+    allowInfinity: false,
+    allowNaN: false,
+    maxDecimalPlaces: 2,
+  })
+     surface: number;
 
   @Column({
     type:"smallint",
     name: "number_place",
     unsigned: true,
    
+  })
+  @Validator.IsNotEmpty()
+  @Validator.IsPositive()
+  @Validator.IsNumber({
+    allowInfinity: false,
+    allowNaN: false,
+    maxDecimalPlaces: 2,
   })
   numberPlace: number;
 

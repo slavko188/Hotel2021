@@ -14,8 +14,7 @@ export class Photo {
   @PrimaryGeneratedColumn({ name: 'photo_id', type: 'int', unsigned: true })
   photoId: number;
 
-
-  @Column({
+@Column({
     type: "varchar",
     name: "image_path",
     unique: true,

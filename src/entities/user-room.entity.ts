@@ -8,6 +8,7 @@ import {
 } from "typeorm";
 import { Room } from "./room.entity";
 import { User } from "./user.entity";
+import * as Validator from 'class-validator';
 
 @Index("user_room_user_id", ["userId"], { unique: true })
 @Index("user_room_room_id", ["roomId"], { unique: true })
@@ -45,6 +46,13 @@ export class UserRoom {
     scale: 2,
     
   })
+  @Validator.IsNotEmpty()
+  @Validator.IsPositive()
+  @Validator.IsNumber({
+    allowInfinity: false,
+    allowNaN: false,
+    maxDecimalPlaces: 2,
+    })
   price: number;
 
   @Column({

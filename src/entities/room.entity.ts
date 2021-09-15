@@ -10,6 +10,7 @@ import { PhotoRoom } from "./photo-room.entity";
 import { Photo } from "./photo.entity";
 import { RoomFeature } from "./room-feature.entity"; 
 import { UserRoom } from "./user-room.entity";
+import * as Validator from 'class-validator';
 
 @Index("number_room", ["numberRoom"], { unique: true })
 @Entity("room")
@@ -24,9 +25,18 @@ export class Room {
     unsigned: true,
   
   })
+  @Validator.IsNotEmpty()
+  @Validator.IsPositive()
+  @Validator.IsNumber({
+    allowInfinity: false,
+    allowNaN: false,
+    maxDecimalPlaces: 0,
+    })
   numberRoom: number;
 
-  @Column({ name: "type_of_bed",type:"varchar", length: 50 })
+  @Column({ name: "type_of_bed", type: "varchar", length: 50 })
+  @Validator.IsNotEmpty()
+    @Validator.IsString()
   typeOfBed: string;
 
   @Column({
@@ -35,9 +45,23 @@ export class Room {
     unsigned: true,
     
   })
+  @Validator.IsNotEmpty()
+  @Validator.IsPositive()
+  @Validator.IsNumber({
+    allowInfinity: false,
+    allowNaN: false,
+    maxDecimalPlaces: 0,
+    })
   numberOfBed: number;
 
-  @Column({ name: "floor",type:"int", unsigned: true, default: () => "'0'" })
+  @Column({ name: "floor", type: "int", unsigned: true, default: () => "'0'" })
+  @Validator.IsNotEmpty()
+  @Validator.IsPositive()
+  @Validator.IsNumber({
+    allowInfinity: false,
+    allowNaN: false,
+    maxDecimalPlaces: 0,
+    })
   floor: number;
 
   @OneToMany(() => RoomFeature, (roomFeature) => roomFeature.room)

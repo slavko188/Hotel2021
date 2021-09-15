@@ -19,9 +19,12 @@ export class User {
     type: "varchar",
     name: "username",
     unique: true,
-    length: 64,
+    length: 32,
     
   })
+  @Validator.IsNotEmpty()
+  @Validator.IsString()
+  @Validator.Matches(/^[a-z][a-z0-9\.]{3,32}[a-z0-9]$/)
   username: string;
 
   @Column({
@@ -29,6 +32,9 @@ export class User {
     name: "is_active",
     unsigned: true,
   })
+  @Validator.IsNotEmpty()
+  @Validator.IsPositive()
+  @Validator.IsIn([0,1])
   isActive: number;
 
   @Column({ type: "varchar", name: "forename", length: 64 })

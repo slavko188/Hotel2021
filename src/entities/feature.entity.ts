@@ -9,6 +9,7 @@ import {
 import { HallFeature } from "./hall-feature.entity";
 import { Hall } from "./hall.entity";
 import { RoomFeature } from "./room-feature.entity";
+import * as Validator from 'class-validator';
 
 @Index("name", ["name"], { unique: true })
 @Entity("feature")
@@ -23,6 +24,9 @@ export class Feature {
     length: 50,
     
   })
+  @Validator.IsNotEmpty()
+  @Validator.IsString()
+  @Validator.Length(0,50)
   name: string;
 
   @OneToMany(() => HallFeature, (hallFeature) => hallFeature.feature)
