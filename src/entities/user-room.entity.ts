@@ -46,8 +46,8 @@ export class UserRoom {
     scale: 2,
     
   })
-  @Validator.IsNotEmpty()
-  @Validator.IsPositive()
+   @Validator.IsNotEmpty()
+    @Validator.IsPositive()
   @Validator.IsNumber({
     allowInfinity: false,
     allowNaN: false,

@@ -26,7 +26,7 @@ export class Hall {
   })
   @Validator.IsNotEmpty()
   @Validator.IsString()
-    @Validator.Length(0, 123)
+  @Validator.Length(0, 123)
   name: string;
 
   @Column({

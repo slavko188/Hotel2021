@@ -25,18 +25,18 @@ export class Room {
     unsigned: true,
   
   })
-  @Validator.IsNotEmpty()
+ @Validator.IsNotEmpty()
   @Validator.IsPositive()
-  @Validator.IsNumber({
-    allowInfinity: false,
-    allowNaN: false,
+ @Validator.IsNumber({
+ allowInfinity: false,
+   allowNaN: false,
     maxDecimalPlaces: 0,
     })
   numberRoom: number;
 
   @Column({ name: "type_of_bed", type: "varchar", length: 50 })
   @Validator.IsNotEmpty()
-    @Validator.IsString()
+  @Validator.IsString()
   typeOfBed: string;
 
   @Column({
@@ -54,7 +54,7 @@ export class Room {
     })
   numberOfBed: number;
 
-  @Column({ name: "floor", type: "int", unsigned: true, default: () => "'0'" })
+  @Column({ name: "floor", type: "int", unsigned: true })
   @Validator.IsNotEmpty()
   @Validator.IsPositive()
   @Validator.IsNumber({

@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { UserHall } from "./user-hall.entity";
 import { UserRoom } from "./user-room.entity";
-import Validator from 'class-validator';
+//import Validator from 'class-validator';
 
 @Index("uq_user_username", ["username"], { unique: true })
 @Entity("user")
@@ -22,9 +22,9 @@ export class User {
     length: 32,
     
   })
-  @Validator.IsNotEmpty()
-  @Validator.IsString()
-  @Validator.Matches(/^[a-z][a-z0-9\.]{3,32}[a-z0-9]$/)
+  //@Validator.IsNotEmpty()
+  //@Validator.IsString()
+  //@Validator.Matches(/^[a-z][a-z0-9\.]{3,32}[a-z0-9]$/)
   username: string;
 
   @Column({
@@ -32,21 +32,21 @@ export class User {
     name: "is_active",
     unsigned: true,
   })
-  @Validator.IsNotEmpty()
-  @Validator.IsPositive()
-  @Validator.IsIn([0,1])
+ //@Validator.IsNotEmpty()
+  //@Validator.IsPositive()
+  //@Validator.IsIn([0,1])
   isActive: number;
 
   @Column({ type: "varchar", name: "forename", length: 64 })
-  @Validator.IsNotEmpty()
-  @Validator.IsString()
-  @Validator.Length(2, 64)
+  // @Validator.IsNotEmpty()
+  //@Validator.IsString()
+ //@Validator.Length(2, 64)
   forename: string;
 
   @Column({ name: "surname", type: "varchar", length: 64 })
-  @Validator.IsNotEmpty()
-  @Validator.IsString()
-  @Validator.Length(2, 64)
+  //@Validator.IsNotEmpty()
+  //@Validator.IsString()
+  // @Validator.Length(2, 64)
   surname: string;
 
   @Column({
@@ -55,8 +55,8 @@ export class User {
     length: 128,
     
   })
-  @Validator.IsNotEmpty()
-  @Validator.IsHash('sha512')
+  //@Validator.IsNotEmpty()
+  //@Validator.IsHash('sha512')
   passwordHash: string;
 
   @OneToOne(() => UserHall, (userHall) => userHall.user)

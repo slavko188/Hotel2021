@@ -27,6 +27,9 @@ import { PhotoHall } from 'src/entities/photo-hall.entity';
 import { PhotoHallService } from 'src/services/photo/photoHall.service';
 import { PhotoRoomService } from 'src/services/photo/photoRoom.service';
 import { PhotoController } from './api/photo.controller';
+import { Administrator } from 'src/entities/administrator.entity';
+import { AdministratorService } from 'src/services/administrator/administrator.service';
+import { AdministratorController } from 'src/controlers/api/administrator.controller';
 
 @Module({
   imports: [
@@ -37,7 +40,8 @@ import { PhotoController } from './api/photo.controller';
       username: DatabaseConfiguration.username,
       password: DatabaseConfiguration.password,
       database: DatabaseConfiguration.database,
-    entities: [
+      entities: [
+        Administrator,
         Feature,
         HallFeature,
         Hall,
@@ -51,6 +55,7 @@ import { PhotoController } from './api/photo.controller';
       PhotoRoom,]
     }),
     TypeOrmModule.forFeature([
+      Administrator,
       User,
       Room,
       Hall,
@@ -65,6 +70,7 @@ import { PhotoController } from './api/photo.controller';
 
   ],
   controllers: [
+    AdministratorController,
     AppController,
     UserController,
     RoomController,
@@ -74,6 +80,7 @@ import { PhotoController } from './api/photo.controller';
     PhotoController,
   ],
   providers: [
+    AdministratorService,
     UserService,
     RoomService,
     HallService,
