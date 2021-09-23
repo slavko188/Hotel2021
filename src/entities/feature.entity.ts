@@ -1,4 +1,4 @@
-import { HallService } from "src/services/hall/hall.service";
+
 import {
   Column,
   Entity,
