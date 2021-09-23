@@ -9,6 +9,22 @@ DROP DATABASE IF EXISTS `hotel`;
 CREATE DATABASE IF NOT EXISTS `hotel` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `hotel`;
 
+DROP TABLE IF EXISTS `administrator`;
+CREATE TABLE IF NOT EXISTS `administrator` (
+  `administrator_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `password_hash` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`administrator_id`),
+  UNIQUE KEY `uq_administrator_username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DELETE FROM `administrator`;
+/*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
+INSERT INTO `administrator` (`administrator_id`, `username`, `password_hash`) VALUES
+	(1, 'milantex', '1638djw9dk3mdw8wjdwu'),
+	(2, 'slavkotex', '353727383646dhdns73628hdu');
+/*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
+
 DROP TABLE IF EXISTS `feature`;
 CREATE TABLE IF NOT EXISTS `feature` (
   `feature_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -170,7 +186,7 @@ INSERT INTO `user` (`user_id`, `username`, `is_active`, `forename`, `surname`, `
 	(1, 'skavkoR', 1, 'slavko', 'Roganovic', '9CD4D3F52DD115C4464B690BE843ABBF90DD5CEE289F69D4C8A780B347D96501FAF1E25837C035B38C5AFBE5732AFB91764BB267A736058C8C82FB8D526BFF5B'),
 	(2, 'rajkoRiki', 1, 'rajko', 'rajkovic', '264759dhwjfus3847gjdksm'),
 	(3, 'milanMiki', 1, 'milan', 'milovic', 'shdkaldjdgv4739fhvkd937'),
-	(4, 'NikolaR', 0, '0', '0', '9A3599D04563B675AE25BC0AA1FCC0D62402CD3DE9BA52AED350C5EC8D630E68D4AC639C09BFB2343596AC07B4100A8FA249654CAC1236C504500DE901892BE4');
+	(4, 'NikolaR', 0, 'nikola', 'Roganovic', '9A3599D04563B675AE25BC0AA1FCC0D62402CD3DE9BA52AED350C5EC8D630E68D4AC639C09BFB2343596AC07B4100A8FA249654CAC1236C504500DE901892BE4');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `user_hall`;
