@@ -29,7 +29,7 @@ import { PhotoRoomService } from 'src/services/photo/photoRoom.service';
 import { PhotoController } from './api/photo.controller';
 import { Administrator } from 'src/entities/administrator.entity';
 import { AdministratorService } from 'src/services/administrator/administrator.service';
-import { AdministratorController } from 'src/controlers/api/administrator.controller';
+import { AdministratorController } from 'src/controllers/api/administrator.controller';
 
 @Module({
   imports: [
@@ -49,23 +49,22 @@ import { AdministratorController } from 'src/controlers/api/administrator.contro
         Room,
         UserHall,
         UserRoom,
-      User,
-      Photo,
-      PhotoHall,
-      PhotoRoom,]
+        User,
+        Photo,
+        PhotoHall,
+        PhotoRoom,]
     }),
-    TypeOrmModule.forFeature([
-      Administrator,
-      User,
-      Room,
-      Hall,
-      Feature,
-      HallFeature,
-      Photo,
-      PhotoHall,
-      PhotoRoom,
+      TypeOrmModule.forFeature([
+        Administrator,
+        User,
+        Room,
+        Hall,
+        Feature,
+        HallFeature,
+        Photo,
+        PhotoHall,
+        PhotoRoom,
 
-      
     ])
 
   ],
