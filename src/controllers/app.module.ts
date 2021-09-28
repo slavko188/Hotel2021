@@ -30,6 +30,7 @@ import { PhotoController } from './api/photo.controller';
 import { Administrator } from 'src/entities/administrator.entity';
 import { AdministratorService } from 'src/services/administrator/administrator.service';
 import { AdministratorController } from 'src/controllers/api/administrator.controller';
+import { AuthController } from './api/auth.controller';
 
 @Module({
   imports: [
@@ -77,6 +78,7 @@ import { AdministratorController } from 'src/controllers/api/administrator.contr
     FeatureController,
     HallFeatureController,
     PhotoController,
+    AuthController,
   ],
   providers: [
     AdministratorService,
