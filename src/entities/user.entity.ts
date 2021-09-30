@@ -15,28 +15,6 @@ export class User {
   @PrimaryGeneratedColumn({ type: "int", name: "user_id", unsigned: true })
   userId: number;
 
-  @Column({
-    type: "varchar",
-    name: "username",
-    unique: true,
-    length: 32,
-    
-  })
-  //@Validator.IsNotEmpty()
-  //@Validator.IsString()
-  //@Validator.Matches(/^[a-z][a-z0-9\.]{3,32}[a-z0-9]$/)
-  username: string;
-
-  @Column({
-    type: "tinyint",
-    name: "is_active",
-    unsigned: true,
-  })
- //@Validator.IsNotEmpty()
-  //@Validator.IsPositive()
-  //@Validator.IsIn([0,1])
-  isActive: number;
-
   @Column({ type: "varchar", name: "forename", length: 64 })
   // @Validator.IsNotEmpty()
   //@Validator.IsString()
@@ -49,6 +27,12 @@ export class User {
   // @Validator.Length(2, 64)
   surname: string;
 
+  @Column({ type: 'varchar', name: 'email', length: '255', unique: true, })
+  email: string;
+
+  @Column({ type: 'varchar', name: 'phone_number', length: '24', unique: true })
+  phoneNumber: string;
+
   @Column({
     type: "varchar",
     name: "password_hash",
@@ -58,6 +42,9 @@ export class User {
   //@Validator.IsNotEmpty()
   //@Validator.IsHash('sha512')
   passwordHash: string;
+
+  @Column({ type: 'text', name: 'postal_address', })
+  postalAddress: string;
 
   @OneToOne(() => UserHall, (userHall) => userHall.user)
   userHall: UserHall;
