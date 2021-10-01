@@ -16,13 +16,14 @@ CREATE TABLE IF NOT EXISTS `administrator` (
   `password_hash` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`administrator_id`),
   UNIQUE KEY `uq_administrator_username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `administrator`;
 /*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
 INSERT INTO `administrator` (`administrator_id`, `username`, `password_hash`) VALUES
-	(1, 'milantex', '1638djw9dk3mdw8wjdwu'),
-	(2, 'slavkotex', '353727383646dhdns73628hdu');
+	(1, 'milantex', '8FAB6FBD93973BDE5DBCF2DB71BFC18E1182204D382DC140AF37D846C0C09C744C54F14AF637B17B2FA30CFAF78C3E3CCBBDCDFA253ADF8623D594CC99E7766C'),
+	(2, 'slavkotex', '353727383646dhdns73628hdu'),
+	(3, 'NNemanja', 'F0E4B248BAFAF9650E7732AE836F973B13059E7A2A5C7C89644CDE171222C2FD93DD8E233557E4684765360A07103054A9F2354FB57C32E6FD3F9CBE31DA5A65');
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `feature`;
@@ -171,22 +172,21 @@ INSERT INTO `room_feature` (`room_feature_id`, `room_id`, `feature_id`) VALUES
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(60) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `is_active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `forename` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `surname` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `phone_number` varchar(24) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `password_hash` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `postal_address` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `uq_user_username` (`username`)
+  UNIQUE KEY `uq_user_email` (`email`) USING BTREE,
+  UNIQUE KEY `uq_user_phone_number` (`phone_number`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`user_id`, `username`, `is_active`, `forename`, `surname`, `password_hash`) VALUES
-	(1, 'skavkoR', 1, 'slavko', 'Roganovic', '9CD4D3F52DD115C4464B690BE843ABBF90DD5CEE289F69D4C8A780B347D96501FAF1E25837C035B38C5AFBE5732AFB91764BB267A736058C8C82FB8D526BFF5B'),
-	(2, 'rajkoRiki', 1, 'rajko', 'rajkovic', '264759dhwjfus3847gjdksm'),
-	(3, 'milanMiki', 1, 'milan', 'milovic', 'shdkaldjdgv4739fhvkd937'),
-	(4, 'NikolaR', 0, 'nikola', 'Roganovic', '9A3599D04563B675AE25BC0AA1FCC0D62402CD3DE9BA52AED350C5EC8D630E68D4AC639C09BFB2343596AC07B4100A8FA249654CAC1236C504500DE901892BE4');
+INSERT INTO `user` (`user_id`, `email`, `forename`, `surname`, `phone_number`, `password_hash`, `postal_address`) VALUES
+	(1, 'slavkoroganovic888@gmail.com', 'slavko', 'Roganovic', '069 888999', '9CD4D3F52DD115C4464B690BE843ABBF90DD5CEE289F69D4C8A780B347D96501FAF1E25837C035B38C5AFBE5732AFB91764BB267A736058C8C82FB8D526BFF5B', '');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `user_hall`;
@@ -205,8 +205,6 @@ CREATE TABLE IF NOT EXISTS `user_hall` (
 
 DELETE FROM `user_hall`;
 /*!40000 ALTER TABLE `user_hall` DISABLE KEYS */;
-INSERT INTO `user_hall` (`user_hall_id`, `user_id`, `hall_id`, `checks_in_at`, `checks_out_at`) VALUES
-	(1, 3, 1, '2021-04-26 16:13:53', '2021-05-05 16:13:59');
 /*!40000 ALTER TABLE `user_hall` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `user_room`;

@@ -9,7 +9,7 @@ import { UserHall } from "./user-hall.entity";
 import { UserRoom } from "./user-room.entity";
 //import Validator from 'class-validator';
 
-@Index("uq_user_username", ["username"], { unique: true })
+
 @Entity("user")
 export class User {
   @PrimaryGeneratedColumn({ type: "int", name: "user_id", unsigned: true })
@@ -27,7 +27,7 @@ export class User {
   // @Validator.Length(2, 64)
   surname: string;
 
-  @Column({ type: 'varchar', name: 'email', length: '255', unique: true, })
+  @Column({ type: 'varchar', length: '255', unique: true, })
   email: string;
 
   @Column({ type: 'varchar', name: 'phone_number', length: '24', unique: true })
