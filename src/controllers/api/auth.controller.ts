@@ -1,4 +1,5 @@
-import { Body, Controller, Post, Put, Req } from "@nestjs/common";
+
+/*import { Body, Controller, Post, Put, Req } from "@nestjs/common";
 import { LoginAdministratorDto } from "src/dtos/administrator/login.administrator.dto";
 import { ApiResponse } from "src/greska/api.response.class";
 import { AdministratorService } from "src/services/administrator/administrator.service";
@@ -72,4 +73,4 @@ export class AuthController {
      return await this.userService.register(data);  // <- ovo data je (userregistrationdto) data trasfer objecat.
      
   }
-}
+} */

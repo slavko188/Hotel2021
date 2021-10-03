@@ -14,8 +14,16 @@ export class AdministratorService {
     private readonly administrator: Repository<Administrator>
   ) { }
   
-  getAll(): Promise<Administrator[]> {
-    return this.administrator.find();
+ async getAll(): Promise<Administrator[]> {
+   const allAdmin = await this.administrator.find();
+
+   if (allAdmin) {
+     return allAdmin;
+   }
+
+   return null;
+   
+
   }
 
   async getByUsername(username: string): Promise <Administrator | null> {
@@ -28,8 +36,9 @@ export class AdministratorService {
     return null;
   }
    
-  getById(id: number): Promise<Administrator> {
+  getById(id: number): Promise<Administrator | ApiResponse> {
     return this.administrator.findOne(id);
+
   }
   add(data: AddAdministratorDto): Promise<Administrator | ApiResponse> {
     const passwordHash = crypto.createHash('sha512');

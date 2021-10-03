@@ -27,7 +27,7 @@ export class AdministratorController {
   }
  // Put http://localhost:3000/api/administrator/
   @Put()
-  add(@Body() data: AddAdministratorDto): Promise<Administrator | ApiResponse> {
+   add(@Body() data: AddAdministratorDto): Promise<Administrator | ApiResponse> {
     return this.administratorService.add(data);
   }
 
