@@ -1,4 +1,4 @@
-/*import { HttpException, HttpStatus, Injectable, NestMiddleware } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, NestMiddleware } from "@nestjs/common";
 import { NextFunction, Request, Response } from "express";
 import { AdministratorService } from "src/services/administrator/administrator.service";
 import * as  jwt from "jsonwebtoken";
@@ -17,6 +17,8 @@ export class AuthMiddleware implements NestMiddleware {
 
      // razdvajamo rijec "BERER" od tokena
      const token = req.headers.authorization;
+
+
      const tokenParts = token.split(' ');
      if (tokenParts.length !== 2) {
       throw new HttpException('Bad token', HttpStatus.UNAUTHORIZED);
@@ -50,6 +52,7 @@ export class AuthMiddleware implements NestMiddleware {
      }
 
      
-    next();
+     next();
+
   }
-} */
+} 

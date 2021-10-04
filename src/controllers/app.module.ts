@@ -29,8 +29,8 @@ import { PhotoController } from './api/photo.controller';
 import { Administrator } from 'src/entities/administrator.entity';
 import { AdministratorService } from 'src/services/administrator/administrator.service';
 import { AdministratorController } from 'src/controllers/api/administrator.controller';
-//import { AuthController } from './api/auth.controller';
-//import { AuthMiddleware } from 'src/middlewars/auth.Middleware';
+import { AuthController } from './api/auth.controller';
+import { AuthMiddleware } from 'src/middlewars/auth.Middleware';
 
 @Module({
   imports: [
@@ -77,7 +77,7 @@ import { AdministratorController } from 'src/controllers/api/administrator.contr
     FeatureController,
     HallFeatureController,
     PhotoController,
-    //AuthController,
+    AuthController,
   ],
   providers: [
     AdministratorService,
@@ -91,14 +91,14 @@ import { AdministratorController } from 'src/controllers/api/administrator.contr
     PhotoHallService,
     ],
 
-  //exports: [AdministratorService,
+  exports: [AdministratorService,
   
-  //],
+  ],
 }) 
-export class AppModule {//implements NestModule 
- // configure(consumer: MiddlewareConsumer) {
- //   consumer.apply(AuthMiddleware)
-   //   .exclude('auth/*')
-     // .forRoutes('api/*');
+export class AppModule implements NestModule { 
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware)
+      .exclude('auth/*')
+      .forRoutes('api/*');
   }
-//}
+}

@@ -1,5 +1,5 @@
 
-/*import { Body, Controller, Post, Put, Req } from "@nestjs/common";
+import { Body, Controller, Post, Put, Req } from "@nestjs/common";
 import { LoginAdministratorDto } from "src/dtos/administrator/login.administrator.dto";
 import { ApiResponse } from "src/greska/api.response.class";
 import { AdministratorService } from "src/services/administrator/administrator.service";
@@ -25,7 +25,7 @@ export class AuthController {
 
       if (!administrator) {
         return new Promise(resolve => 
-          resolve(new ApiResponse('error', -3001)));
+          resolve(new ApiResponse('error', -3001, 'Non-exsisting administrator')));
       }
 
       const passwordHash = crypto.createHash('sha512');
@@ -33,7 +33,7 @@ export class AuthController {
       const passwordHashString = passwordHash.digest('hex').toUpperCase();
 
       if (administrator.passwordHash !== passwordHashString) {
-        return new Promise(resolve => resolve(new ApiResponse('error', -3002)));
+        return new Promise(resolve => resolve(new ApiResponse('error', -3002, 'Password not correct')));
       }
       // sada vracemo informacije o uspesnom logovanju(ovo nije isto vratiti informacije o korisniku)
       //treba da sadrze 
@@ -73,4 +73,5 @@ export class AuthController {
      return await this.userService.register(data);  // <- ovo data je (userregistrationdto) data trasfer objecat.
      
   }
-} */
+  
+} 
