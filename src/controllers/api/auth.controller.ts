@@ -52,7 +52,7 @@ export class AuthController {
 
       let sada = new Date();
       sada.setDate(sada.getDate() + 14);
-      const istekTimestamp = sada.getTime() / 1000;
+      const istekTimestamp = (sada.getTime() / 1000);
       jwtData.exp = istekTimestamp;
 
       jwtData.ip = req.ip.toString();
