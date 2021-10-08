@@ -91,8 +91,10 @@ import { AuthMiddleware } from 'src/middlewars/auth.Middleware';
     PhotoHallService,
     ],
 
-  exports: [AdministratorService,
-  
+  exports: [
+    AdministratorService,
+    UserService,
+        
   ],
 }) 
 export class AppModule implements NestModule { 
