@@ -14,8 +14,8 @@ export class AuthMiddleware implements NestMiddleware {
     public readonly userService: UserService) { }
   
   async use(req: Request, res: Response, next: NextFunction) {
-   
-     if (!req.headers.authorization) { 
+    if (!req.headers.authorization) {
+    
        throw new HttpException('Token not found', HttpStatus.UNAUTHORIZED);
        
     }
@@ -29,12 +29,9 @@ export class AuthMiddleware implements NestMiddleware {
      }
      const tokenString = tokenParts[1];
    
-
      const jwtData: JwtDataDto = jwt.verify(token, jwtSecret);
-
      
     if (!jwtData) {
-   
       throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED);
       
      }
@@ -70,8 +67,7 @@ export class AuthMiddleware implements NestMiddleware {
     
      
      next();
-
-    
-   
+  
   }
+
 } 

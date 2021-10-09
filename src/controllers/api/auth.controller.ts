@@ -23,7 +23,7 @@ export class AuthController {
   @Post('administrator/login') // http://localhost:3000/auth/administrator/login/
    async doAdministratorLogin(@Body() data: LoginAdministratorDto, @Req() req: Request): Promise<LoginInfoDto | ApiResponse> {
       const administrator = await this.administratorService.getByUsername(data.username);
-
+   
       if (!administrator) {
         return new Promise(resolve => 
           resolve(new ApiResponse('error', -3001, 'Non-exsisting administrator')));
