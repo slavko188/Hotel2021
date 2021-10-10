@@ -1,7 +1,7 @@
 
 import { Body, Controller, Post, Put, Req } from "@nestjs/common";
 import { LoginAdministratorDto } from "src/dtos/administrator/login.administrator.dto";
-import { ApiResponse } from "src/greska/api.response.class";
+import { ApiResponse } from "src/misc/api.response.class";
 import { AdministratorService } from "src/services/administrator/administrator.service";
 import * as crypto from 'crypto';
 import { LoginInfoDto } from "src/dtos/auth/loginInfo.dto";
@@ -23,7 +23,8 @@ export class AuthController {
   @Post('administrator/login') // http://localhost:3000/auth/administrator/login/
    async doAdministratorLogin(@Body() data: LoginAdministratorDto, @Req() req: Request): Promise<LoginInfoDto | ApiResponse> {
       const administrator = await this.administratorService.getByUsername(data.username);
-   
+     
+    
       if (!administrator) {
         return new Promise(resolve => 
           resolve(new ApiResponse('error', -3001, 'Non-exsisting administrator')));
@@ -60,7 +61,7 @@ export class AuthController {
         administrator.username,
         token);
       return new Promise(resolve => resolve(responseObject));
-  }
+      }
   
    @Put('user/register') // http://localhost:3000/auth/user/register/
    async userRegister(@Body() data: UserRegistrationDto) {
@@ -113,7 +114,8 @@ export class AuthController {
      const responseObject = new LoginInfoDto(
        user.userId,
        user.email,
-       token);
+       token
+     );
      return new Promise(resolve => resolve(responseObject));
  }
   

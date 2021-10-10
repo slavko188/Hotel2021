@@ -15,7 +15,6 @@ export class AuthMiddleware implements NestMiddleware {
   
   async use(req: Request, res: Response, next: NextFunction) {
     if (!req.headers.authorization) {
-    
        throw new HttpException('Token not found', HttpStatus.UNAUTHORIZED);
        
     }
@@ -29,14 +28,20 @@ export class AuthMiddleware implements NestMiddleware {
      }
      const tokenString = tokenParts[1];
    
-     const jwtData: JwtDataDto = jwt.verify(token, jwtSecret);
-     
-    if (!jwtData) {
+    let jwtData: JwtDataDto;
+
+    try {
+      jwtData = jwt.verify(tokenString, jwtSecret);
+
+    } catch (e) {
       throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED);
+    }
+      
+      if (!jwtData) {
+        throw new HttpException('Bad token found', HttpStatus.UNAUTHORIZED);
       
      }
     
-   
      if (jwtData.ip !== req.ip.toString()) {
        throw new HttpException('Bad ip adress', HttpStatus.UNAUTHORIZED);
      }
@@ -48,24 +53,23 @@ export class AuthMiddleware implements NestMiddleware {
     if (jwtData.role === "administrator") {
       const administrator = await this.administratorService.getById(jwtData.id);
       if (!administrator) {
-        throw new HttpException('Not found administrator', HttpStatus.UNAUTHORIZED);
+        throw new HttpException('Accound Not found ', HttpStatus.UNAUTHORIZED);
       }
     } else if (jwtData.role === "user") {
       const user = await this.userService.getById(jwtData.id);
       if (!user) {
-        throw new HttpException('Not found user', HttpStatus.UNAUTHORIZED);
+        throw new HttpException('Accound Not found', HttpStatus.UNAUTHORIZED);
       }
 
     }
-
-   
 
      const trenutniTimeStemp = new Date().getTime() / 1000;
      if (trenutniTimeStemp >= jwtData.exp) {
       throw new HttpException('The token is expired', HttpStatus.UNAUTHORIZED);
      }
+      
+    req.token = jwtData;
     
-     
      next();
   
   }

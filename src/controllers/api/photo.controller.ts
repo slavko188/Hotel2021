@@ -1,14 +1,16 @@
-import { Controller, Delete, Param, Post, Req, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Controller, Delete, Param, Post, Req, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Crud } from "@nestjsx/crud";
 import { Photo } from "src/entities/photo.entity";
 import { PhotoService } from "src/services/photo/photo.service";
 import { diskStorage } from "multer";
 import { StorageConfig } from "config/storage.config";
-import { ApiResponse } from "src/greska/api.response.class";
+import { ApiResponse } from "src/misc/api.response.class";
 import * as fileType from 'file-type';
 import * as fs from 'fs';
 import * as sharp from 'sharp';
+import { AllowToRoles } from "src/misc/alow.to.roles.descriptor";
+import { RoleCheckedGuard } from "src/misc/role.checker.guard";
 
 
 @Controller('api/photo')
@@ -162,6 +164,8 @@ export class PhotoController {
     
   //http://localhost:3000/api/photo/deletePhoto/4/
   @Delete(':deletephoto/:photoId')
+  @UseGuards(RoleCheckedGuard)
+  @AllowToRoles('administrator')
   public async deletePhoto(
     @Param('photoId') photoId: number,
   ) {

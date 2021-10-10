@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
-import { ApiResponse } from 'src/greska/api.response.class';
+import { ApiResponse } from 'src/misc/api.response.class';
 import { Repository } from 'typeorm';
 import * as crypto from 'crypto';
 import { UserRegistrationDto } from 'src/dtos/user/user.registration.dto';
