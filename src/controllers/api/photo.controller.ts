@@ -25,7 +25,28 @@ import { RoleCheckedGuard } from "src/misc/role.checker.guard";
         primary: true
       }
 
-    }
+    },
+
+    routes: {
+      only: [
+        'getOneBase',
+        'getManyBase',
+      ],
+
+      getOneBase: {
+        decorators: [
+          UseGuards(RoleCheckedGuard),
+          AllowToRoles('administrator', 'user')
+        ],
+      },
+      getManyBase: {
+        decorators: [
+          UseGuards(RoleCheckedGuard),
+          AllowToRoles('administrator', 'user')
+         ],
+      },
+
+     },
   
    
   })
@@ -35,6 +56,8 @@ export class PhotoController {
   constructor(public photoService: PhotoService) { }
 
   @Post(':id/uploadphoto/')  // POST http://localhost:3000/api/article/:id/uploadPhoto
+  @UseGuards(RoleCheckedGuard)
+   @AllowToRoles('administrator') 
   @UseInterceptors(
     FileInterceptor('photo', {
       storage: diskStorage({
