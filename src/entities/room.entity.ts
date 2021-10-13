@@ -64,6 +64,7 @@ export class Room {
     })
   floor: number;
 
+  
   @OneToMany(() => RoomFeature, (roomFeature) => roomFeature.room)
   roomFeatures: RoomFeature[];
 

@@ -23,9 +23,10 @@ export class Photo {
   })
   @Validator.IsNotEmpty()
   @Validator.IsString()
-  @Validator.Length( 1, 128)
+  @Validator.Length(1, 128)
   imagePath: string;
  
+   
   @OneToMany(() => PhotoHall, (photoHall) => photoHall.photo)
   photoHall: PhotoHall[];
 
