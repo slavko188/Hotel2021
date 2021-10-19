@@ -6,7 +6,7 @@ import {
 } from "typeorm";
 import { UserHall } from "./user-hall.entity";
 import { UserRoom } from "./user-room.entity";
-import Validator from 'class-validator';
+import * as Validator from 'class-validator';
 
 
 @Entity("user")

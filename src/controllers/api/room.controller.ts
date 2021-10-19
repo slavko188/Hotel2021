@@ -23,7 +23,7 @@ export class RoomController {
 
   @Get(':id')
   @UseGuards(RoleCheckedGuard)
-  @AllowToRoles('administrator' | 'user')
+  @AllowToRoles("administrator")
   getByid(@Param('id') roomid:number): Promise<Room | ApiResponse> {
     return new Promise(async(resolve) => {
      let room = await this.roomService.getById(roomid)

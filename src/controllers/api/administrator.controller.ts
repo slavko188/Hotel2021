@@ -41,12 +41,10 @@ export class AdministratorController {
 
   //  PATCH http://localhost:3000/api/administrator/4/(editovanje) -> da se promijeni password administratoru br.4
   @Patch(':id')
-  @UseGuards(RoleCheckedGuard) 
+  @UseGuards(RoleCheckedGuard)
   @AllowToRoles('administrator')
   edit(@Param('id') id: number, @Body() data: EditAdministratorDto): Promise<Administrator | ApiResponse> {
     return this.administratorService.editById(id, data);
   }
-
-
 
 }

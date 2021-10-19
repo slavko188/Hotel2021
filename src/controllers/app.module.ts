@@ -31,6 +31,7 @@ import { AdministratorService } from 'src/services/administrator/administrator.s
 import { AdministratorController } from 'src/controllers/api/administrator.controller';
 import { AuthController } from './api/auth.controller';
 import { AuthMiddleware } from 'src/middlewars/auth.Middleware';
+import { UserToken } from 'src/entities/user-token.entity';
 
 @Module({
   imports: [
@@ -53,7 +54,9 @@ import { AuthMiddleware } from 'src/middlewars/auth.Middleware';
         User,
         Photo,
         PhotoHall,
-        PhotoRoom,]
+        PhotoRoom,
+        UserToken,
+      ]
     }),
       TypeOrmModule.forFeature([
         Administrator,
@@ -65,9 +68,8 @@ import { AuthMiddleware } from 'src/middlewars/auth.Middleware';
         Photo,
         PhotoHall,
         PhotoRoom,
-
+        UserToken,
     ])
-
   ],
   controllers: [
     AdministratorController,
