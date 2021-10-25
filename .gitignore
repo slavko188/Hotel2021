@@ -37,4 +37,12 @@ lerna-debug.log*
 /config
 .database.configuration.ts 
 .jwt.secret.ts 
-.strage.config.ts 
+.storage.config.ts 
+
+/middlewars
+.auth.middleware.ts
+
+/misc
+.request.with.token.ts
+.role.checker.quard.ts
+.alow.to.roles.descriptor.ts  
