@@ -9,11 +9,13 @@ async function bootstrap() {
 
   app.useStaticAssets(StorageConfig.photo.destination, {
     prefix: StorageConfig.photo.urlPrefix,
-   maxAge: StorageConfig.photo.maxAge,
+    maxAge: StorageConfig.photo.maxAge,
     index: false,
   })
 
   app.useGlobalPipes(new ValidationPipe());
+
+  app.enableCors();
   
   await app.listen(3000);
 }
