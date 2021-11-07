@@ -9,7 +9,6 @@ import { Room } from 'src/entities/room.entity';
 import { UserHall } from 'src/entities/user-hall.entity';
 import { UserRoom } from 'src/entities/user-room.entity';
 import { User } from '../entities/user.entity';
-import { AppController } from '../app.controller';
 import { UserService } from '../services/user/user.service';
 import { RoomController } from './api/room.controller';
 import { RoomService } from 'src/services/room/room.service';
@@ -32,6 +31,7 @@ import { AdministratorController } from 'src/controllers/api/administrator.contr
 import { AuthController } from './api/auth.controller';
 import { AuthMiddleware } from 'src/middlewars/auth.Middleware';
 import { UserToken } from 'src/entities/user-token.entity';
+import { AdministratorToken } from 'src/entities/administrator-token.entity';
 
 @Module({
   imports: [
@@ -56,6 +56,7 @@ import { UserToken } from 'src/entities/user-token.entity';
         PhotoHall,
         PhotoRoom,
         UserToken,
+        AdministratorToken,
       ]
     }),
       TypeOrmModule.forFeature([
@@ -69,11 +70,11 @@ import { UserToken } from 'src/entities/user-token.entity';
         PhotoHall,
         PhotoRoom,
         UserToken,
+        AdministratorToken,
     ])
   ],
   controllers: [
     AdministratorController,
-    AppController,
     RoomController,
     HallController,
     FeatureController,

@@ -37,6 +37,7 @@ export class AdministratorController {
   @AllowToRoles('administrator')
    add(@Body() data: AddAdministratorDto): Promise<Administrator | ApiResponse> {
     return this.administratorService.add(data);
+
   }
 
   //  PATCH http://localhost:3000/api/administrator/4/(editovanje) -> da se promijeni password administratoru br.4
