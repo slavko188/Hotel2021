@@ -1,5 +1,4 @@
-
-import { Body, Controller, HttpException, HttpStatus, Post, Put, Req } from "@nestjs/common";
+import { Body, Controller, HttpException, HttpStatus, Post, Req } from "@nestjs/common";
 import { LoginAdministratorDto } from "src/dtos/administrator/login.administrator.dto";
 import { ApiResponse } from "src/misc/api.response.class";
 import { AdministratorService } from "src/services/administrator/administrator.service";
@@ -24,7 +23,8 @@ export class AuthController {
     public userService: UserService,
   ) { }
   @Post('administrator/login') // http://localhost:3000/auth/administrator/login/
-   async doAdministratorLogin(@Body() data: LoginAdministratorDto, @Req() req: Request): Promise<LoginInfoDto | ApiResponse> {
+     async doAdministratorLogin(@Body() data: LoginAdministratorDto, @Req() req: Request):
+     Promise<LoginInfoDto | ApiResponse> {
       const administrator = await this.administratorService.getByUsername(data.username);
      
     
@@ -166,17 +166,7 @@ export class AuthController {
      if (user.passwordHash !== passwordHashString) {
        return new Promise(resolve => resolve(new ApiResponse('error', -3002, 'Password not correct')));
      }
-     // sada vracemo informacije o uspesnom logovanju(ovo nije isto vratiti informacije o korisniku)
-     //treba da sadrze 
-     //administratorId,username,token(JWT)
-     //ni slucajno password.
-     // procedura za token()
-     //tajna sifra,
-     //JSON = {administratorId, username, exp, ip-adres,ua(useragent)}
-     //sifrovanje (Tajna Sifra -> JSON)-> sifrat binarni BASE64HEX
-     //HEX STRING
-       
-           //Token(jwt)Generisanje tokena se instalira se biblioteka(jsonwebtoken)
+ 
    const jwtData = new JwtDataDto();
      jwtData.role = "user";
      jwtData.id = user.userId;

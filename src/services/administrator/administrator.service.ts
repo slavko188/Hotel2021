@@ -53,7 +53,8 @@ export class AdministratorService {
     newAdmin.passwordHash = passwordHashString;
 
     return new Promise((resolve) => {
-      this.administrator.save(newAdmin).then(data => resolve(data))
+      this.administrator.save(newAdmin)
+        .then(data => resolve(data))
         .catch(error => {
           const response: ApiResponse = new ApiResponse("error", -1001);
           resolve(response);
