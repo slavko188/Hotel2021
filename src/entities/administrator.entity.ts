@@ -9,7 +9,7 @@ export class Administrator {
   @Column({ type: 'varchar', length: 32, unique: true })
   @Validator.IsNotEmpty()
   @Validator.IsString()
-  @Validator.Matches(/^[a-z][a-z0-9\.]{3,30}[a-z0-9]$/) 
+  @Validator.Matches(/^[A-z][A-z0-9\.]{3,30}[A-z0-9]$/) 
   username: string;
 
   @Column({ name: 'password_hash', type: 'varchar', length: 128 })

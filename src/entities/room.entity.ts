@@ -25,9 +25,9 @@ export class Room {
     unsigned: true,
   
   })
- @Validator.IsNotEmpty()
+  @Validator.IsNotEmpty()
   @Validator.IsPositive()
- @Validator.IsNumber({
+  @Validator.IsNumber({
  allowInfinity: false,
    allowNaN: false,
     maxDecimalPlaces: 0,

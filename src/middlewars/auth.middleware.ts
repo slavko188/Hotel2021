@@ -23,7 +23,7 @@ export class AuthMiddleware implements NestMiddleware {
      const token = req.headers.authorization;
     
      const tokenParts = token.split(' ');
-     if (tokenParts.length !== 2) {
+    if (tokenParts.length !== 2) {
       throw new HttpException('Bad token', HttpStatus.UNAUTHORIZED);
      }
      const tokenString = tokenParts[1];

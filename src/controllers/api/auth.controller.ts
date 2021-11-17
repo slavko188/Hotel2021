@@ -22,13 +22,14 @@ export class AuthController {
     public administratorService: AdministratorService,
     public userService: UserService,
   ) { }
+
   @Post('administrator/login') // http://localhost:3000/auth/administrator/login/
      async doAdministratorLogin(@Body() data: LoginAdministratorDto, @Req() req: Request):
      Promise<LoginInfoDto | ApiResponse> {
       const administrator = await this.administratorService.getByUsername(data.username);
-     
+   
     
-      if (!administrator) {
+    if (!administrator) {
         return new Promise(resolve => 
           resolve(new ApiResponse('error', -3001, 'Non-exsisting administrator')));
       }
@@ -74,7 +75,7 @@ export class AuthController {
       await this.administratorService.addToken(
         administrator.administratorId,
         refreshToken,
-        this.getDatabseDateFormat(this.getIsoDate(jwtRefreshData.exp))
+        this.getDatabaseDateFormat(this.getIsoDate(jwtRefreshData.exp))
       );
   
        return new Promise(resolve => resolve(responseObject));
@@ -87,7 +88,7 @@ export class AuthController {
            const administratorToken = await this.administratorService.getAdministratorToken(data.token);
     
      //ako token ne postoji
-     if (!administratorToken) {
+    if (!administratorToken) {
        return new ApiResponse("error", -10002, "No such refresh token");
      }
      // ako je token validan
@@ -103,7 +104,7 @@ export class AuthController {
        return new ApiResponse("error", -10004, "The token has expired!");
      }
    // osvezavamo token
-     let jwtRefreshData: JwtRefreshDataDto;
+    let jwtRefreshData: JwtRefreshDataDto;
   
      try {
        jwtRefreshData = jwt.verify(data.token, jwtSecret);
@@ -152,11 +153,11 @@ export class AuthController {
   }
   @Post('user/login') // http://localhost:3000/auth/user/login/
   async doUserLogin(@Body() data: LoginUserDto, @Req() req: Request): Promise<LoginInfoDto | ApiResponse> {
-     const user = await this.userService.getByEmail(data.email);
+    const user = await this.userService.getByEmail(data.email);
 
      if (!user) {
        return new Promise(resolve => 
-         resolve(new ApiResponse('error', -3001, 'Non-exsisting administrator')));
+         resolve(new ApiResponse('error', -3001, 'Non-exsisting user')));
      }
 
      const passwordHash = crypto.createHash('sha512');
@@ -198,7 +199,7 @@ export class AuthController {
     await this.userService.addToken(
       user.userId,
       refreshToken,
-      this.getDatabseDateFormat(this.getIsoDate(jwtRefreshData.exp))
+      this.getDatabaseDateFormat(this.getIsoDate(jwtRefreshData.exp))
     );
 
      return new Promise(resolve => resolve(responseObject));
@@ -277,7 +278,7 @@ async userTokenRefresh(@Req() req: Request, @Body() data: UserRefreshTokenDto): 
     return date.toISOString();
   }
 
-  private getDatabseDateFormat(isoFormat: string): string {
+  private getDatabaseDateFormat(isoFormat: string): string {
     return isoFormat.substr(0, 19).replace('T', ' ');
   } 
 } 
