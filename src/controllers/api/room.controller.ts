@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param,  Put, UseGuards } from "@nestjs/common";
 import { Room } from "src/entities/room.entity";
-//import { AddRoomDto } from "src/dtos/room/add.room.dto";
-//import { ApiResponse } from "src/misc/api.response.class";
+import { AddRoomDto } from "src/dtos/room/add.room.dto";
+import { ApiResponse } from "src/misc/api.response.class";
 import { RoomService } from "src/services/room/room.service";
 import { PhotoService } from "src/services/photo/photo.service";
 import { AllowToRoles } from "src/misc/alow.to.roles.descriptor";
@@ -72,7 +72,7 @@ export class RoomController {
   constructor(private roomService: RoomService, public photoService: PhotoService, ) { }
     
 
- /* @Get()
+  @Get()
   @UseGuards(RoleCheckedGuard)
   @AllowToRoles('administrator', 'user')
   getAllRoom(): Promise<Room[]> {
@@ -99,7 +99,7 @@ export class RoomController {
   createFullRoom(@Body() data: AddRoomDto): Promise<Room | ApiResponse > {
     return this.roomService.createFullRoom(data);
 
-     }*/
+     }
                                     
 }
 

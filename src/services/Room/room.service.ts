@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Room } from "src/entities/room.entity";
-//import { AddRoomDto } from "src/dtos/room/add.room.dto";
-//import { ApiResponse } from "src/misc/api.response.class";
+import { AddRoomDto } from "src/dtos/room/add.room.dto";
+import { ApiResponse } from "src/misc/api.response.class";
 import { Repository } from "typeorm";
 import { TypeOrmCrudService } from "@nestjsx/crud-typeorm";
 
@@ -16,7 +16,7 @@ export class RoomService extends TypeOrmCrudService<Room>{
   }
 
    
- /* getAll(): Promise<Room[]> {
+    getAll(): Promise<Room[]> {
     return this.room.find();
   }
 
@@ -40,7 +40,7 @@ export class RoomService extends TypeOrmCrudService<Room>{
     let savedRoom = await this.room.save(newRoom);
     
     return this.room.save(savedRoom);
-  } */        
+  }       
    
  }
 
