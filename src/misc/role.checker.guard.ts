@@ -14,8 +14,7 @@ export class RoleCheckedGuard implements CanActivate {
     const role = req.token.role;
 
     const allowedToRoles =
-      this.
-        reflector.get<("administrator" | "user")[]>('allow_to_roles', context.getHandler());
+      this.reflector.get<("administrator" | "user")[]>('allow_to_roles', context.getHandler());
     
     if (!allowedToRoles.includes(role)) {
       return false;
